@@ -3,6 +3,13 @@ import datetime
 
 
 class TestCasesModel(db.Model):
+    """
+    [summary]
+
+    Args:
+        TestCasesMixin ([type]): [description]
+        db ([type]): [description]
+    """
     __tablename__ = 'test_cases'
 
     id = db.Column(db.Integer, primary_key=True)

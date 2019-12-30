@@ -3,6 +3,13 @@ import datetime
 
 
 class SubmissionOutputs(db.Model):
+    """
+    [summary]
+
+    Args:
+        SubmissionOutputsMixin ([type]): [description]
+        db ([type]): [description]
+    """
     __tablename__ = "submission_outputs"
 
     id = db.Column(db.Integer, primary_key=True)

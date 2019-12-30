@@ -3,6 +3,13 @@ import datetime
 
 
 class EventsModel(db.Model):
+    """
+    [summary]
+
+    Args:
+        EventsMixin ([type]): [description]
+        db ([type]): [description]
+    """
     __tablename__ = "events"
 
     id = db.Column(db.Integer, primary_key=True)
