@@ -13,6 +13,7 @@ def add_resources(app):
     api.add_resource(UserSignUp, '/signup')
     api.add_resource(FacebookAuthorize, '/facebook')
     api.add_resource(GithubAuthorize, '/github')
+    
 
 def register_blueprints(app):
     """
