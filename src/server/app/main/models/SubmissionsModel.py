@@ -21,5 +21,5 @@ class SubmissionsModel(db.Model):
         'users.id'), nullable=False)
     contest_challenge_id = db.Column(db.Integer, db.ForeignKey(
         'contests_challenges.id'), nullable=False)
-    submission_output = db.relationship(
+    submission_outputs = db.relationship(
         'SubmissionOutputs', backref="submission", lazy=True)
