@@ -5,15 +5,13 @@ import requests
 from app.main.services.auth_helper import Auth
 from app.main.utils.oauth_utils import github, oauth, facebook, g
 
-
 class UserSignUp(Resource):
     """
     [summary]
-
+    
     Args:
         Resource ([type]): [description]
     """
-
     def post(self):
         """Creates a new User """
         data = request.json
@@ -24,7 +22,6 @@ class UserLogin(Resource):
     """
         User Login Resource
     """
-
     def post(self):
         # get the post data
         post_data = request.json
@@ -35,7 +32,6 @@ class LogoutAPI(Resource):
     """
     Logout Resource
     """
-
     def post(self):
         # get auth token
         auth_header = request.headers.get('Authorization')
@@ -60,12 +56,10 @@ class GithubAuthorize(Resource):
         github_user_data = dict(username=github.get("login"))
         github_user = github.get("user")
         github_email = github.get("user/emails")
-        github_new_user = dict(username=github_user.data.get('login'),
-                               name=github_user.data.get('name') if github_user.data.get(
-                                   'name') else github_user.data.get('login'),
-                               email=github_email.data[0].get('email'))
-        return save_new_user(github_new_user)
-
+        github_new_user = dict(username=github_user.data.get('login'), 
+        name=github_user.data.get('name') if github_user.data.get('name') else github_user.data.get('login'), 
+        email=github_email.data[0].get('email'))
+        return  save_new_user(github_new_user)
 
 class FacebookAuthorize(Resource):
     @classmethod
@@ -74,6 +68,6 @@ class FacebookAuthorize(Resource):
         access_token = data["access_token"]
         g.facebook_access_token = access_token
         facebook_user = facebook.get("me?fields=id,name,email").data
-        user_data = dict(username=facebook_user['id'], name=facebook_user['name'],
-                         email=facebook_user['email'])
+        user_data = dict(username=facebook_user['id'], name=facebook_user['name'], 
+                        email=facebook_user['email'])
         return save_new_user(data=user_data)

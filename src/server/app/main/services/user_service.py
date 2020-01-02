@@ -1,29 +1,29 @@
-from app.main.models.UsersModel import UserModel
+from app.main.models.user import User
 from app.main import login_manager, db
 import uuid
-
 
 @login_manager.user_loader
 def load_user(user_id):
     """
     [summary]
-
+    
     Args:
         user_id ([type]): [description]
-
+    
     Returns:
         [type]: [description]
     """
-    return UserModel.query.get(int(user_id))
-
+    return User.query.get(int(user_id))
 
 def save_new_user(data):
-    user = UserModel.query.filter_by(email=data['email']).first()
+    user = User.query.filter_by(email=data['email']).first()
     if not user:
-        new_user = UserModel(
+        new_user = User(
             public_id=str(uuid.uuid4()),
             email=data['email'],
+            username=data['username'],
             name=data['name'],
+            admin=data.get('admin', False),
             password=data.get('password', None)
         )
         save_changes(new_user)
@@ -41,15 +41,13 @@ def save_new_user(data):
 
 
 def get_all_users():
-    return UserModel.query.all()
-
+    return User.query.all()
 
 def login(email, password):
-    user = UserModel.query.filter_by(email=email).first()
-
-
+    user =  User.query.filter_by(email=email).first()
+    
 def get_one_user(public_id):
-    return UserModel.query.filter_by(public_id=public_id).first()
+    return User.query.filter_by(public_id=public_id).first()
 
 
 def save_changes(data):

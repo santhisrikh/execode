@@ -12,4 +12,5 @@ from . import SubmissionsModel
 from . import SubmissionOutputsModel
 from . import AttemptsModel
 from . import EventsModel
-# from app.main.models.user import User
+from app.main.models.user import User
+
