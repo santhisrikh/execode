@@ -130,3 +130,4 @@ ENV/
 # mypy
 .mypy_cache/
 /migrations
+/src/server/migrations/versions
