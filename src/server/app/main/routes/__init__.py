@@ -1,6 +1,7 @@
 from app.main.routes.auth_controller import UserLogin, LogoutAPI, UserSignUp, FacebookAuthorize, GithubAuthorize
 from app.main import api
 from app.main.routes.Contest import Contest
+from app.main.routes.RuncodeResource import RuncodeResource
 
 
 def add_resources(app):
@@ -16,6 +17,7 @@ def add_resources(app):
     api.add_resource(FacebookAuthorize, '/facebook')
     api.add_resource(GithubAuthorize, '/github')
     api.add_resource(Contest, '/contest/<contest_name>')
+    api.add_resource(RuncodeResource, '/runcode')
 
 
 def register_blueprints(app):
