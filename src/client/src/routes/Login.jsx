@@ -1,11 +1,11 @@
-import React from 'react';
-import LoginPublic from '../components/common/LoginPublic';
+import React from "react";
+import LoginPublic from "../components/common/LoginPublic";
 
 const Login = () => {
   return (
-    <React.Fragment>
+    <>
       <LoginPublic />
-    </React.Fragment>
+    </>
   );
 };
 

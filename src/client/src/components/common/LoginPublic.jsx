@@ -8,9 +8,11 @@ const LoginPublic = () => {
   });
 
   const onChange = e => {
-    e.target.name === "keepLoggedIn"
-      ? setLoginState({ ...loginState, [e.target.name]: e.target.checked })
-      : setLoginState({ ...loginState, [e.target.name]: e.target.value });
+    if (e.target.name === "keepLoggedIn") {
+      setLoginState({ ...loginState, [e.target.name]: e.target.checked });
+    } else {
+      setLoginState({ ...loginState, [e.target.name]: e.target.value });
+    }
   };
 
   const onLoginSubmit = e => {
