@@ -1,12 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import LoginPublic from '../components/common/LoginPublic';
 
 const Login = () => {
   return (
-    <>
-      <div>LOGIN PAGE</div>
-      <Link to="/dash">GOTO DASHBOARD</Link>
-    </>
+    <React.Fragment>
+      <LoginPublic />
+    </React.Fragment>
   );
 };
 
