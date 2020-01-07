@@ -4,7 +4,7 @@ import styles from "./Home.module.css";
 const Home = () => {
   return (
     <div className={styles.home}>
-      <header className={styles.header}>
+      {/* <header className={styles.header}>
         <h1>Masai Open Source</h1>
         <img src="/images/logo.svg" className={styles.reactLogo} alt="logo" />
         <p>
@@ -21,7 +21,7 @@ const Home = () => {
             Masai School
           </a>
         </p>
-      </header>
+      </header> */}
     </div>
   );
 };
