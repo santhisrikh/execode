@@ -8,7 +8,7 @@ def makeRunCodeFolder(user_id):
         Check if user run code folder exists: Creates if it doesnot
     """
     cwd = os.getcwd()
-    path = cwd+"/app/static/run_code/user"+str(user_id)
+    path = cwd+"/static/run_code/user"+str(user_id)
     if os.path.exists(path):
         return path
     else:

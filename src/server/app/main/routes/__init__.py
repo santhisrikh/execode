@@ -2,6 +2,7 @@ from app.main.routes.auth_controller import UserLogin, LogoutAPI, UserSignUp, Fa
 from app.main import api
 from app.main.routes.Contest import Contest
 from app.main.routes.RuncodeResource import RuncodeResource
+from app.main.routes.SubmitCodeResource import SubmitCodeResource
 
 
 def add_resources(app):
@@ -18,6 +19,7 @@ def add_resources(app):
     api.add_resource(GithubAuthorize, '/github')
     api.add_resource(Contest, '/contest/<contest_name>')
     api.add_resource(RuncodeResource, '/runcode')
+    api.add_resource(SubmitCodeResource, '/submit')
 
 
 def register_blueprints(app):
