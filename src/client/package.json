@@ -48,7 +48,9 @@
     "eslint-plugin-react": "^7.17.0",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "stylelint": "^12.0.1",
+    "stylelint-config-standard": "^19.0.0"
   },
   "husky": {
     "hooks": {
@@ -56,9 +58,14 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+    "src/**/*.{js,jsx,ts,tsx,json,md}": [
       "prettier --write",
       "eslint src/ --fix",
+      "git add"
+    ],
+    "src/**/*.{css,scss}": [
+      "prettier --write",
+      "stylelint \"**/*.css\" --fix",
       "git add"
     ],
     "cypress/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
