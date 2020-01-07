@@ -22,9 +22,10 @@ class AddChallenges extends Component {
   componentDidMount() {
     // call api to fetch challenges and set state
   }
+
   render() {
     const { challenge, challenges } = this.state;
-    let selected_challenges = challenges.filter(ch => {
+    const selected_challenges = challenges.filter(ch => {
       let found = false;
       this.props.challenge_ids.forEach(id => {
         if (id == ch.id) {
