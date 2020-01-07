@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class ChallengeSettings extends Component {
   constructor(props) {
     super(props);
     this.state = {
       language: "",
-      time_limit: 100,
-      memory_limit: 100
+      timeLimit: 100,
+      memoryLimit: 100
     };
   }
 
@@ -17,6 +18,8 @@ class ChallengeSettings extends Component {
   };
 
   render() {
+    const { language, timeLimit, memoryLimit } = this.state;
+    const { addSettings, settings } = this.props;
     return (
       <div>
         <h3>Challenge Settings</h3>
@@ -25,7 +28,7 @@ class ChallengeSettings extends Component {
         <div className="form-group row">
           <div className="col-sm-6 col-md-3">
             <select
-              value={this.state.language}
+              value={language}
               name="language"
               onChange={this.handleChange}
               id="language"
@@ -42,9 +45,9 @@ class ChallengeSettings extends Component {
               onChange={this.handleChange}
               className="form-control"
               id="time limit"
-              value={this.state.time_limit}
+              value={timeLimit}
               placeholder="Time LIMIT"
-              name="time_limit"
+              name="timeLimit"
             />
           </div>
           <div className="col-sm-6 col-md-3">
@@ -53,15 +56,16 @@ class ChallengeSettings extends Component {
               onChange={this.handleChange}
               className="form-control"
               id="memory limit"
-              value={this.state.memory_limit}
+              value={memoryLimit}
               placeholder="Memory Limit"
-              name="memory_limit"
+              name="memoryLimit"
             />
           </div>
           <div className="col-sm-6 col-md-3">
             <button
+              type="button"
               className="btn btn-primary btn-block"
-              onClick={() => this.props.addSettings(this.state)}
+              onClick={() => addSettings(this.state)}
             >
               Add Setting
             </button>
@@ -71,11 +75,11 @@ class ChallengeSettings extends Component {
         <div className="row">
           <div className="col-sm-12">
             <ul>
-              {this.props.settings
-                ? this.props.settings.map(setting => (
+              {settings
+                ? settings.map(setting => (
                     <li>
                       Language:{setting.language} | Time Limit:
-                      {setting.time_limit} | Memory Limit:{setting.memory_limit}
+                      {setting.timeLimit} | Memory Limit:{setting.memoryLimit}
                     </li>
                   ))
                 : null}
@@ -86,5 +90,10 @@ class ChallengeSettings extends Component {
     );
   }
 }
+
+ChallengeSettings.propTypes = {
+  settings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addSettings: PropTypes.func.isRequired
+};
 
 export default ChallengeSettings;
