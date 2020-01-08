@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function ChallengeLeaderboard() {
-    return (
-        <div>
-            ChallengeLeaderboard
-        </div>
-    )
+  return (
+    <div className="container">
+      <h1>ChallengeLeaderboard</h1>
+    </div>
+  );
 }
 
-export default ChallengeLeaderboard
+export default ChallengeLeaderboard;
