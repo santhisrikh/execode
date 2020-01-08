@@ -11,7 +11,7 @@ import NoMatch from "./NoMatch";
 
 const Routes = () => {
   return (
-    <>
+    <div>
       <Route path="/" component={NavBarPublic} />
       <Switch>
         <Route path="/" exact render={() => <Home />} />
@@ -22,7 +22,7 @@ const Routes = () => {
         <Route path="/contact" render={() => <Contact />} />
         <Route component={NoMatch} />
       </Switch>
-    </>
+    </div>
   );
 };
 
