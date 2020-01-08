@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const TodayContest = () => {
-    return (
-        <div>
-            TodayContest
-        </div>
-    )
-}
+  return (
+    <div className="container">
+      <h1>TodayContest </h1>
+    </div>
+  );
+};
 
-export default TodayContest
+export default TodayContest;
