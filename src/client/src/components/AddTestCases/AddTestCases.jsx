@@ -1,13 +1,14 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class AddTestCases extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      test_case_name: "",
+      testCaseName: "",
       visibility: false,
-      input_file: null,
-      output_file: null,
+      inputFile: null,
+      outputFile: null,
       strength: 0
     };
   }
@@ -29,47 +30,47 @@ class AddTestCases extends Component {
   };
 
   render() {
-    const { test_case_name, visibility, strength } = this.state;
-    const { test_cases } = this.props;
+    const { testCaseName, visibility, strength } = this.state;
+    const { testCase, addTestCase } = this.props;
     return (
       <div className="p-3">
         <div className="form-group row">
-          <label htmlFor="challenge-name" className="col-sm-2 col-form-label">
-            Test Case Name
-          </label>
           <div className="col-sm-3">
-            <input
-              type="text"
-              className="form-control"
-              id="challenge-name"
-              value={test_case_name}
-              name="test_case_name"
-              onChange={this.handleChange}
-            />
+            <label htmlFor="challenge-name" className="col-sm-2 col-form-label">
+              Test Case Name
+              <input
+                type="text"
+                className="form-control"
+                id="challenge-name"
+                value={testCaseName}
+                name="testCaseName"
+                onChange={this.handleChange}
+              />
+            </label>
           </div>
-          <label htmlFor="challenge-name" className="col-sm-2 col-form-label">
-            Strength
-          </label>
           <div className="col-sm-3">
-            <input
-              type="text"
-              className="form-control"
-              id="strength"
-              value={strength}
-              onChange={this.handleChange}
-              name="strength"
-            />
+            <label htmlFor="challenge-name" className="col-sm-2 col-form-label">
+              Strength
+              <input
+                type="text"
+                className="form-control"
+                id="strength"
+                value={strength}
+                onChange={this.handleChange}
+                name="strength"
+              />
+            </label>
           </div>
           <div className="col-sm-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="Visibility"
-              onChange={this.handleChange}
-              name="visibility"
-              value={visibility}
-            />
             <label className="form-check-label" htmlFor="Visibility">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="Visibility"
+                onChange={this.handleChange}
+                name="visibility"
+                value={visibility}
+              />
               Visibility
             </label>
           </div>
@@ -78,14 +79,14 @@ class AddTestCases extends Component {
         <div className="form-group row">
           <div className="col-sm-6">
             <div className="custom-file">
-              <input
-                type="file"
-                className="custom-file-input"
-                id="customFile"
-                name="input_file"
-                onChange={this.handleFiles}
-              />
               <label className="custom-file-label" htmlFor="customFile">
+                <input
+                  type="file"
+                  className="custom-file-input"
+                  id="customFile"
+                  name="inputFile"
+                  onChange={this.handleFiles}
+                />
                 Choose Input file
               </label>
             </div>
@@ -94,21 +95,21 @@ class AddTestCases extends Component {
         <div className="form-group row">
           <div className="col-sm-6">
             <div className="custom-file">
-              <input
-                type="file"
-                className="custom-file-input"
-                id="customFile"
-                name="output_file"
-                onChange={this.handleFiles}
-              />
               <label className="custom-file-label" htmlFor="customFile">
+                <input
+                  type="file"
+                  className="custom-file-input"
+                  id="customFile"
+                  name="outputFile"
+                  onChange={this.handleFiles}
+                />
                 Choose Output file
               </label>
             </div>
           </div>
         </div>
         <button
-          onClick={() => this.props.addTestCase(this.state)}
+          onClick={() => addTestCase(this.state)}
           type="button"
           className="btn btn-primary btn-lg btn-block"
         >
@@ -132,15 +133,15 @@ class AddTestCases extends Component {
           <tbody>
             <tr>
               <th scope="row">1</th>
-              {test_cases
-                ? test_cases.map(t_case => (
+              {testCase
+                ? testCase.map(tCase => (
                     <>
-                      <td>{t_case.input_file.name}</td>
-                      <td>{t_case.output_file.name}</td>
-                      <td>{t_case.test_case_name}</td>
-                      <td>{t_case.strength}</td>
+                      <td>{tCase.inputFile.name}</td>
+                      <td>{tCase.outputFile.name}</td>
+                      <td>{tCase.testCaseName}</td>
+                      <td>{tCase.strength}</td>
                       <td>No actions yet</td>
-                      <td>{t_case.visibility ? "Visible" : "Not Visible"}</td>
+                      <td>{tCase.visibility ? "Visible" : "Not Visible"}</td>
                     </>
                   ))
                 : null}
@@ -152,4 +153,8 @@ class AddTestCases extends Component {
   }
 }
 
+AddTestCases.propTypes = {
+  addTestCase: PropTypes.func.isRequired,
+  testCase: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 export default AddTestCases;

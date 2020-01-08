@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class AddChallenges extends Component {
   constructor(props) {
@@ -13,22 +14,29 @@ class AddChallenges extends Component {
     };
   }
 
+  componentDidMount() {
+    // call api to fetch challenges and set state
+  }
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
+
   componentDidMount() {
     // call api to fetch challenges and set state
   }
 
   render() {
+    const { challengeIds, addChallengeId } = this.props;
     const { challenge, challenges } = this.state;
+    
     const selected_challenges = challenges.filter(ch => {
       let found = false;
-      this.props.challenge_ids.forEach(id => {
-        if (id == ch.id) {
+      challengeIds.forEach(id => {
+        if (id === ch.id) {
           found = true;
         }
       });
@@ -57,7 +65,8 @@ class AddChallenges extends Component {
         <div className="col-sm-3">
           <button
             className="btn btn-primary"
-            onClick={() => this.props.addChallengeId(challenge)}
+            type="button"
+            onClick={() => addChallengeId(challenge)}
           >
             Add Challenge
           </button>
@@ -65,8 +74,8 @@ class AddChallenges extends Component {
         <div className="row">
           <div className="col-sm-12">
             <ul>
-              {selected_challenges &&
-                selected_challenges.map(cha => <li>{cha.challenge_name}</li>)}
+              {selectedChallenges &&
+                selectedChallenges.map(cha => <li>{cha.challenge_name}</li>)}
             </ul>
           </div>
         </div>
@@ -74,5 +83,10 @@ class AddChallenges extends Component {
     );
   }
 }
+
+AddChallenges.propTypes = {
+  challengeIds: PropTypes.arrayOf(PropTypes.number).isRequired,
+  addChallengeId: PropTypes.func.isRequired
+};
 
 export default AddChallenges;
