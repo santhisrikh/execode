@@ -24,11 +24,17 @@ class AddChallenges extends Component {
     });
   };
 
+  componentDidMount() {
+    // call api to fetch challenges and set state
+  }
+
   render() {
     const { challengeIds, addChallengeId } = this.props;
     const { challenge, challenges } = this.state;
 
+
     const selectedChallenges = challenges.filter(ch => {
+
       let found = false;
       challengeIds.forEach(id => {
         if (id === ch.id) {
