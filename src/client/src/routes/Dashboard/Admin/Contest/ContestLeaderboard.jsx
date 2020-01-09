@@ -1,5 +1,5 @@
 import React from "react";
-// import Axios from "../../../../utils/axiosInterceptor"
+import Axios from "../../../../utils/axiosInterceptor"
 
 class ContestLeaderBoard extends React.Component {
   constructor() {
@@ -33,6 +33,7 @@ class ContestLeaderBoard extends React.Component {
       ]
     };
   }
+  
 
   render() {
     const { submissions } = this.state;
