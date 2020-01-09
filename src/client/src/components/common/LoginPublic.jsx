@@ -20,7 +20,7 @@ const LoginPublic = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center w-100 px-3 py-5">
+    <div className="d-flex justify-content-center align-items-center mt-5">
       <div className="card p-4">
         <h2 className="lead text-center">Login To Execode</h2>
         <form onSubmit={onLoginSubmit}>
@@ -63,7 +63,7 @@ const LoginPublic = () => {
           </div>
           <input
             type="submit"
-            className="btn btn-success btn-block"
+            className="btn btn-dark btn-block"
             value="Login"
           />
         </form>
