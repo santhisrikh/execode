@@ -12,7 +12,6 @@ class UserLeaderboard(Resource):
         """
             User per contest details
         """
-        # check user role
         # Challenges_details = ChallengesModel.get_raw_data()
         # print(Challenges_details)
         return get_raw_data(contest_id)
