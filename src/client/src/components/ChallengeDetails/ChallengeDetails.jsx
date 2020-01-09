@@ -1,63 +1,42 @@
-import React, { Component } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
-class ChallengeDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      challenge_name: "",
-      difficulty: "",
-      description: "",
-      problem_statement: "",
-      input_format: "",
-      constraints: "",
-      output_format: ""
-    };
-  }
-
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-
-  render() {
-    const {
-      challenge_name,
-      difficulty,
-      description,
-      problem_statement,
-      input_format,
-      constraints,
-      output_format
-    } = this.props;
-
-    return (
-      <div className="mt-3">
-        <h2>Add Challenge Details</h2>
-        <br />
-        <form>
-          <div className="form-group row">
+const ChallengeDetails = ({
+  challengeName,
+  difficulty,
+  description,
+  problemStatement,
+  inputFormat,
+  constraints,
+  outputFormat,
+  handleChange
+}) => {
+  return (
+    <div className="mt-3">
+      <h2>Add Challenge Details</h2>
+      <br />
+      <form>
+        <div className="form-group row">
+          <div className="col-sm-4">
             <label htmlFor="challenge-name" className="col-sm-2 col-form-label">
               Challenge Name
-            </label>
-            <div className="col-sm-4">
               <input
                 type="text"
-                onChange={this.props.handleChange}
+                onChange={handleChange}
                 className="form-control"
                 id="challenge-name"
-                value={challenge_name}
-                name="challenge_name"
+                value={challengeName}
+                name="challengeName"
               />
-            </div>
-            <label htmlFor="difficulty" className="col-sm-2 col-form-label">
-              Difficulty
             </label>
-            <div className="col-sm-4">
+          </div>
+          <div className="col-sm-4">
+            <label htmlFor="difficulty" className="col-sm-2 col-form-label">
+              difficulty
               <select
                 value={difficulty}
                 name="difficulty"
-                onChange={this.props.handleChange}
+                onChange={handleChange}
                 id="difficulty"
                 className="form-control"
               >
@@ -68,77 +47,93 @@ class ChallengeDetails extends Component {
                 <option value="Advanced">Advanced</option>
                 <option value="Expert">Expert</option>
               </select>
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <label htmlFor="" className="col-sm-3 col-form-label">
-              Description
             </label>
+          </div>
+        </div>
+
+        <div className="form-group row">
+          <label htmlFor="description" className="col-sm-3 col-form-label">
+            Description
             <textarea
               value={description}
+              id="description"
               name="description"
-              onChange={this.props.handleChange}
+              onChange={handleChange}
               className="form-control"
               aria-label="With textarea"
             />
-          </div>
+          </label>
+        </div>
 
-          <div className="form-group row">
-            <label htmlFor="" className="col-sm-3 col-form-label">
-              Problem Statement
-            </label>
+        <div className="form-group row">
+          <label htmlFor="problemStatement" className="col-sm-3 col-form-label">
+            Problem Statement
             <textarea
-              value={problem_statement}
-              name="problem_statement"
-              onChange={this.props.handleChange}
+              value={problemStatement}
+              name="problemStatement"
+              id="problemStatement"
+              onChange={handleChange}
               className="form-control"
               aria-label="With textarea"
             />
-          </div>
+          </label>
+        </div>
 
-          <div className="form-group row">
-            <label htmlFor="" className="col-sm-3 col-form-label">
-              Input Format
-            </label>
+        <div className="form-group row">
+          <label htmlFor="inputFormat" className="col-sm-3 col-form-label">
+            Input Format
             <textarea
-              value={input_format}
-              name="input_format"
-              onChange={this.props.handleChange}
+              value={inputFormat}
+              name="inputFormat"
+              id="inputFormat"
+              onChange={handleChange}
               className="form-control"
               aria-label="With textarea"
             />
-          </div>
+          </label>
+        </div>
 
-          <div className="form-group row">
-            <label htmlFor="" className="col-sm-3 col-form-label">
-              Constraints
-            </label>
+        <div className="form-group row">
+          <label htmlFor="constraints" className="col-sm-3 col-form-label">
+            Constraints
             <textarea
               value={constraints}
               name="constraints"
-              onChange={this.props.handleChange}
+              id="constraints"
+              onChange={handleChange}
               className="form-control"
               aria-label="With textarea"
             />
-          </div>
+          </label>
+        </div>
 
-          <div className="form-group row">
-            <label htmlFor="" className="col-sm-3 col-form-label">
-              Output Format
-            </label>
+        <div className="form-group row">
+          <label htmlFor="outputFormat" className="col-sm-3 col-form-label">
+            Output Format
             <textarea
-              value={output_format}
-              name="output_format"
-              onChange={this.props.handleChange}
+              value={outputFormat}
+              name="outputFormat"
+              id="outputFormat"
+              onChange={handleChange}
               className="form-control"
               aria-label="With textarea"
             />
-          </div>
-        </form>
-      </div>
-    );
-  }
-}
+          </label>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+ChallengeDetails.propTypes = {
+  challengeName: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  difficulty: PropTypes.string.isRequired,
+  problemStatement: PropTypes.string.isRequired,
+  inputFormat: PropTypes.string.isRequired,
+  constraints: PropTypes.string.isRequired,
+  outputFormat: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired
+};
 
 export default ChallengeDetails;

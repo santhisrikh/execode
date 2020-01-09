@@ -29,7 +29,7 @@ class DevelopmentConfig(Config):
     # uncomment the line below to use postgres
     # SQLALCHEMY_DATABASE_URI = postgres_local_base
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:S@nthi226@localhost/execode'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Password@123@localhost/execode'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     LOG_TYPE=LOG_TYPE
     LOG_LEVEL=LOG_LEVEL
@@ -43,7 +43,7 @@ class DevelopmentConfig(Config):
 class TestingConfig(Config):
     DEBUG = True
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:S@nthi226@localhost/execode'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask_boilerplate_test.db')
     PRESERVE_CONTEXT_ON_EXCEPTION = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     LOG_TYPE=LOG_TYPE
@@ -63,4 +63,5 @@ config_by_name = dict(
     test=TestingConfig,
     prod=ProductionConfig
 )
+
 key = Config.SECRET_KEY

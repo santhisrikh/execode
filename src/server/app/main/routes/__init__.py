@@ -3,6 +3,10 @@ from app.main import api
 from app.main.routes.Contest import Contest
 from app.main.routes.UserLeaderboard import UserLeaderboard
 from app.main.routes.RuncodeResource import RuncodeResource
+from app.main.routes.SubmitCodeResource import SubmitCodeResource
+
+
+
 def add_resources(app):
     """
     Method to add resources to app context
@@ -18,6 +22,7 @@ def add_resources(app):
     api.add_resource(Contest, '/contest/<contest_name>')
     api.add_resource(UserLeaderboard,'/contest/<contest_id>/leaderboard')
     api.add_resource(RuncodeResource, '/runcode')
+    api.add_resource(SubmitCodeResource, '/submit')
 
 def register_blueprints(app):
     """

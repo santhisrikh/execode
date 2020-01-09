@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const SubmitCode = () => {
-    return (
-        <div>
-            Submit
-        </div>
-    )
-}
+  return (
+    <div className="container">
+      <h1>Submit </h1>
+    </div>
+  );
+};
 
-export default SubmitCode
+export default SubmitCode;
