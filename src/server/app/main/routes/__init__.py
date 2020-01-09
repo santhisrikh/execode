@@ -2,7 +2,7 @@ from app.main.routes.auth_controller import UserLogin, LogoutAPI, UserSignUp, Fa
 from app.main import api
 from app.main.routes.Contest import Contest
 from app.main.routes.Challenges import Challenges
-
+from app.main.routes.RuncodeResource import RuncodeResource
 def add_resources(app):
     """
     Method to add resources to app context
@@ -17,7 +17,7 @@ def add_resources(app):
     api.add_resource(GithubAuthorize, '/github')
     api.add_resource(Contest, '/contest/<contest_name>')
     api.add_resource(Challenges,'/contest/<contest_id>/leaderboard')
-
+    api.add_resource(RuncodeResource, '/runcode')
 
 def register_blueprints(app):
     """
