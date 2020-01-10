@@ -9,5 +9,4 @@ def hello_world():
     current_app.logger.warning(" Warning you")
     current_app.logger.error("But you can't hear me")
     # UserModel.addTestUser()
-
     return "hello hello_world"
