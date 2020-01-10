@@ -8,7 +8,7 @@ class CreateChallenge extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      detailsTab: true,
+      detailsTab: false,
       settingsTab: false,
       testCasesTab: false,
       challenge_name: "",
@@ -29,15 +29,15 @@ class CreateChallenge extends Component {
     });
   };
 
-  addTestCase = test_case => {
-    this.setState({
-      test_cases: [...this.state.test_cases, test_case]
+  addTestCase = testCase => {
+    this.setState(state => {
+      return { testCases: [...state.testCases, testCase] };
     });
   };
 
   addSettings = setting => {
-    this.setState({
-      settings: [...this.state.settings, setting]
+    this.setState(state => {
+      return { settings: [...state.settings, setting] };
     });
   };
 
@@ -75,28 +75,45 @@ class CreateChallenge extends Component {
       detailsTab,
       settingsTab,
       testCasesTab,
-      challenge_name,
+      challenge_name: challengeName,
       difficulty,
       description,
-      problem_statement,
-      input_format,
+      problem_statement: problemStatement,
+      input_format: inputFormat,
       constraints,
-      output_format
+      output_format: outputFormat,
+      settings,
+      test_cases: testCases
     } = this.state;
-    const details = {
-      challenge_name,
-      difficulty,
-      description,
-      problem_statement,
-      input_format,
-      constraints,
-      output_format
-    };
+    let viewTab;
+    if (detailsTab) {
+      viewTab = (
+        <ChallengeDetails
+          handleChange={this.handleDetailsChange}
+          challengeName={challengeName}
+          difficulty={difficulty}
+          description={description}
+          problemStatement={problemStatement}
+          inputFormat={inputFormat}
+          constraints={constraints}
+          outputFormat={outputFormat}
+        />
+      );
+    } else if (settingsTab) {
+      viewTab = (
+        <ChallengeSettings addSettings={this.addSettings} settings={settings} />
+      );
+    } else {
+      viewTab = (
+        <AddTestCases test_cases={testCases} addTestCase={this.addTestCase} />
+      );
+    }
     return (
       <div className="container p-3">
         <ul className="nav nav-tabs">
           <li className="nav-item">
             <button
+              type="button"
               onClick={() => this.handleTabChange("details")}
               className={`nav-link ${detailsTab && "active"}`}
             >
@@ -105,6 +122,7 @@ class CreateChallenge extends Component {
           </li>
           <li className="nav-item">
             <button
+              type="button"
               onClick={() => this.handleTabChange("test")}
               className={`nav-link ${testCasesTab && "active"}`}
             >
@@ -113,6 +131,7 @@ class CreateChallenge extends Component {
           </li>
           <li className="nav-item">
             <button
+              type="button"
               onClick={() => this.handleTabChange("settings")}
               className={`nav-link ${settingsTab && "active"}`}
             >
@@ -120,23 +139,9 @@ class CreateChallenge extends Component {
             </button>
           </li>
         </ul>
-        {detailsTab ? (
-          <ChallengeDetails
-            handleChange={this.handleDetailsChange}
-            {...details}
-          />
-        ) : settingsTab ? (
-          <ChallengeSettings
-            addSettings={this.addSettings}
-            settings={this.state.settings}
-          />
-        ) : (
-          <AddTestCases
-            test_cases={this.state.test_cases}
-            addTestCase={this.addTestCase}
-          />
-        )}
+        {viewTab}
         <button
+          type="button"
           onClick={this.createChallenge}
           className="btn btn-success btn-block"
         >
