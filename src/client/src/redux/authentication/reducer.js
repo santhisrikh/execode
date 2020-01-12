@@ -1,7 +1,7 @@
 import { LOGIN_USER, LOGOUT_USER } from "./actionTypes";
 
 const initState = {
-  isAuth: true
+  isAuth: false
 };
 
 const reducer = (state = initState, action) => {
