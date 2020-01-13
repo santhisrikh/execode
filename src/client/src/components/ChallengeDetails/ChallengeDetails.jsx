@@ -16,29 +16,32 @@ const ChallengeDetails = ({
       <h2>Add Challenge Details</h2>
       <br />
       <form>
+        <div className="row" />
         <div className="form-group row">
-          <div className="col-sm-4">
-            <label htmlFor="challenge-name" className="col-sm-2 col-form-label">
+          <div className="col">
+            <label htmlFor="challenge-name" className="col-form-label">
               Challenge Name
               <input
                 type="text"
+                placeholder="challenge Name"
                 onChange={handleChange}
-                className="form-control"
+                className="form-control mt-2"
                 id="challenge-name"
                 value={challengeName}
                 name="challengeName"
               />
             </label>
           </div>
-          <div className="col-sm-4">
-            <label htmlFor="difficulty" className="col-sm-2 col-form-label">
+
+          <div className="col">
+            <label htmlFor="difficulty" className="col-form-label">
               difficulty
               <select
                 value={difficulty}
                 name="difficulty"
                 onChange={handleChange}
                 id="difficulty"
-                className="form-control"
+                className="form-control mt-2"
               >
                 <option selected>Choose...</option>
                 <option value="Easy">Easy</option>
@@ -52,7 +55,7 @@ const ChallengeDetails = ({
         </div>
 
         <div className="form-group row">
-          <label htmlFor="description" className="col-sm-3 col-form-label">
+          <label htmlFor="description" className="col-form-label">
             Description
             <textarea
               value={description}
@@ -65,8 +68,8 @@ const ChallengeDetails = ({
           </label>
         </div>
 
-        <div className="form-group row">
-          <label htmlFor="problemStatement" className="col-sm-3 col-form-label">
+        <div className="row">
+          <label htmlFor="problemStatement" className="col-form-label">
             Problem Statement
             <textarea
               value={problemStatement}
@@ -79,8 +82,8 @@ const ChallengeDetails = ({
           </label>
         </div>
 
-        <div className="form-group row">
-          <label htmlFor="inputFormat" className="col-sm-3 col-form-label">
+        <div className="row">
+          <label htmlFor="inputFormat" className="col-form-label">
             Input Format
             <textarea
               value={inputFormat}
@@ -93,8 +96,8 @@ const ChallengeDetails = ({
           </label>
         </div>
 
-        <div className="form-group row">
-          <label htmlFor="constraints" className="col-sm-3 col-form-label">
+        <div className="row">
+          <label htmlFor="constraints" className="col-form-label">
             Constraints
             <textarea
               value={constraints}
@@ -107,8 +110,8 @@ const ChallengeDetails = ({
           </label>
         </div>
 
-        <div className="form-group row">
-          <label htmlFor="outputFormat" className="col-sm-3 col-form-label">
+        <div className="row">
+          <label htmlFor="outputFormat" className="col-form-label">
             Output Format
             <textarea
               value={outputFormat}

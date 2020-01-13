@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./CreateChallenge.module.css";
 import ChallengeDetails from "../../../../components/ChallengeDetails/ChallengeDetails";
 import ChallengeSettings from "../../../../components/ChallengeSettings/ChallengeSettings";
 import AddTestCases from "../../../../components/AddTestCases/AddTestCases";
@@ -143,7 +142,7 @@ class CreateChallenge extends Component {
         <button
           type="button"
           onClick={this.createChallenge}
-          className="btn btn-success btn-block"
+          className="btn btn-dark btn-block"
         >
           Add Challenge
         </button>

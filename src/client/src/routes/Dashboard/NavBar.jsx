@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 // import styles from "./DashboardRoutes.module.css";
 
 const NavBar = () => {
@@ -37,9 +37,9 @@ const NavBar = () => {
                 </Link>
               </li>
               <li role="presentation" className="nav-item">
-                <Link className="nav-link text-light" to="/dash/reports">
+                <NavLink className="nav-link text-light" to="/dash/reports">
                   Reports
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>
