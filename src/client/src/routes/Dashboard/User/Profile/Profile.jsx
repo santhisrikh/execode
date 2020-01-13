@@ -4,17 +4,21 @@ const Profile = () => {
   return (
     <div className="container">
       <div className="row border-bottom">
-        <h5 className="lead mb-4 col-6 text-left"> Profile</h5>
+        <h3 className="mb-4 mt-3 col-6 text-left">Profile</h3>
       </div>
       <div className="row mt-3">
         <div className="col-12 col-md-4">
-          <img
-            src="https://via.placeholder.com/150"
-            alt="user profile"
-            className="rounded-circle "
-          />
-          <p>Mihir Kumar</p>
-          <p>Samurai</p>
+          <div className="mb-3">
+            <img
+              src="https://dummyimage.com/150x150/010101/aaa"
+              alt="user profile"
+              className="rounded-circle"
+            />
+          </div>
+          <div>
+            <h4>Mihir Kumar</h4>
+            <h5 className="underline">Samurai</h5>
+          </div>
         </div>
         <div className="col-12 col-md-8">
           <table className="table table-bordered">
@@ -23,10 +27,11 @@ const Profile = () => {
                 <th scope="col">Challenge Name</th>
                 <th scope="col">Date</th>
                 <th scope="col">Status</th>
+                <th scope="col">Attempt</th>
               </tr>
             </thead>
             {/* dummy data will be replace later */}
-            <tbody>
+            <tbody className="text-center">
               <tr>
                 <td>
                   <p>Challenge - 1</p>
@@ -36,7 +41,9 @@ const Profile = () => {
                 </td>
                 <td>
                   <p>In complete</p>
-                  <button type="button" className="btn btn-success">
+                </td>
+                <td>
+                  <button type="button" className="btn btn-dark">
                     Attempt Now
                   </button>
                 </td>

@@ -6,10 +6,10 @@ class UserDashboard extends React.Component {
     this.state = {
       userLeaderboard: [
         {
-          name: '',
-          score: '',
-          rank: '',
-          testCases:''
+          name: "testing casing 123",
+          score: "212",
+          rank: "31",
+          testCases: "312"
         }
       ]
     };
@@ -18,14 +18,14 @@ class UserDashboard extends React.Component {
   render() {
     const { userLeaderboard } = this.state;
     return (
-      <>
+      <div>
         <div className="row d-flex justify-content-center">
           <table
-            className="table table-striped text-center border border-success col-md-8 "
+            className="table table-striped text-center border border-dark col-md-8 "
             style={{ marginTop: "100px" }}
           >
             <thead>
-              <tr className="p-3 mb-2 bg-info text-white">
+              <tr className="p-3 mb-2 bg-dark text-white">
                 {/* <th scope="col">S.no</th> */}
                 <th scope="col">name</th>
                 <th scope="col">score</th>
@@ -36,7 +36,7 @@ class UserDashboard extends React.Component {
             <tbody>
               {userLeaderboard.map(ele => {
                 return (
-                  <tr>
+                  <tr key={ele.id}>
                     {/* <th scope="row">{ele.id}</th> */}
                     <td>{ele.name}</td>
                     <td>{ele.score}</td>
@@ -48,7 +48,7 @@ class UserDashboard extends React.Component {
             </tbody>
           </table>
         </div>
-      </>
+      </div>
     );
   }
 }

@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { Link } from "react-router-dom";
-// import styles from "./NavBarPublic.module.css";
+import { Link, NavLink } from "react-router-dom";
 
 const NavBar = ({ location: { pathname } }) => {
   if (pathname.startsWith("/dash")) return null;
@@ -29,9 +28,9 @@ const NavBar = ({ location: { pathname } }) => {
                 </Link>
               </li>
               <li role="presentation" className="nav-item">
-                <Link className="nav-link text-light" to="/register">
+                <NavLink className="nav-link text-light" to="/register">
                   Register
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>
