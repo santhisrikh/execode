@@ -7,11 +7,12 @@ import About from "./About";
 import Contact from "./Contact";
 import Home from "./Home";
 import NavBarPublic from "./NavbarPublic";
+import ContestChallenge from "./Dashboard/User/Challenge/ContestChallenge";
 import NoMatch from "./NoMatch";
 
 const Routes = () => {
   return (
-    <>
+    <div>
       <Route path="/" component={NavBarPublic} />
       <Switch>
         <Route path="/" exact render={() => <Home />} />
@@ -20,9 +21,10 @@ const Routes = () => {
         <Route path="/register" render={() => <Register />} />
         <Route path="/about" render={() => <About />} />
         <Route path="/contact" render={() => <Contact />} />
+        <Route path="/cc" render={() => <ContestChallenge />} />
         <Route component={NoMatch} />
       </Switch>
-    </>
+    </div>
   );
 };
 

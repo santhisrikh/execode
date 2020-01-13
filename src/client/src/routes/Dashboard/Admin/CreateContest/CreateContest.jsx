@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React, { Component } from "react";
 import AddContestDetails from "../../../../components/AddContestDetails/AddContestDetails";
 import AddChallenges from "../../../../components/AddChallenges/AddChallenges";
@@ -40,9 +41,9 @@ class CreateContest extends Component {
   };
 
   handleDetailsChange = event => {
-    const target = event.target;
+    const { target } = event;
     const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
+    const { name } = target;
 
     this.setState({
       [name]: value
@@ -109,10 +110,7 @@ class CreateContest extends Component {
         )}
         <br />
         <br />
-        <button
-          onClick={this.createConest}
-          className="btn btn-success btn-block"
-        >
+        <button onClick={this.createConest} className="btn btn-dark btn-block">
           Add Challenge
         </button>
       </div>

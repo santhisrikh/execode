@@ -3,9 +3,9 @@ import LoginPublic from "../components/common/LoginPublic";
 
 const Login = () => {
   return (
-    <>
+    <div className="container">
       <LoginPublic />
-    </>
+    </div>
   );
 };
 

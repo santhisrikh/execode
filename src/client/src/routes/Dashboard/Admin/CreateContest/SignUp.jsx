@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const SignUp = () => {
-    return (
-        <div>
-            signup
-        </div>
-    )
-}
+  return (
+    <div className="container">
+      <h1>Signup</h1>
+    </div>
+  );
+};
 
-export default SignUp
+export default SignUp;

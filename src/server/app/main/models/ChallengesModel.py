@@ -12,7 +12,6 @@ class ChallengesModel(db.Model):
         db ([type]): [description]
     """
     __tablename__ = "challenges"
-
     id = db.Column(db.Integer, primary_key=True)
     challenge_name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.Text, nullable=False)
