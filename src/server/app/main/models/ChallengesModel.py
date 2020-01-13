@@ -30,3 +30,4 @@ class ChallengesModel(db.Model):
                            backref=db.backref('challenges', lazy=True))
     test_cases = db.relationship(
         'TestCasesModel', backref='challenge', lazy=True)
+    max_score = db.Column(db.Integer, nullable=True, default=0)

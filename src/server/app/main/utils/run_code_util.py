@@ -8,7 +8,7 @@ def makeRunCodeFolder(user_id):
         Check if user run code folder exists: Creates if it doesnot
     """
     cwd = os.getcwd()
-    path = cwd+"/app/static/run_code/user"+str(user_id)
+    path = cwd+"/static/run_code/user"+str(user_id)
     if os.path.exists(path):
         return path
     else:
@@ -48,9 +48,12 @@ def make_js_file(code, path):
     return path+"/code.py"
 
 
-def generate_output_error(input_path, code_path, path, my_lang):
-    output_path = path+"/y.txt"
-    error_path = path+"/z.txt"
+def generate_output_error(input_path, code_path, path, my_lang, output_file_name="out.txt", error_file_name="err.txt"):
+    """
+        Generate output and error
+    """
+    output_path = path+"/"+output_file_name
+    error_path = path+"/"+error_file_name
     if my_lang == "javascript":
         pass
     elif my_lang == "python":
@@ -84,7 +87,7 @@ def compare_output(output_path, expected_path):
     expected_lines = expected_output.readlines()
     user_output.close()
     expected_output.close()
-    print(expected_lines)
+    # print(expected_lines)
     if len(output_lines) == len(expected_lines):
         for i in range(len(output_lines)):
             if output_lines[i] != expected_lines[i]:
