@@ -21,9 +21,10 @@ def add_resources(app):
     api.add_resource(FacebookAuthorize, '/facebook')
     api.add_resource(GithubAuthorize, '/github')
     api.add_resource(Contest, '/contest/<contest_name>')
+    api.add_resource(RuncodeResource, '/runcode')
+    api.add_resource(SubmitCodeResource, "/submitcode")
     api.add_resource(UserLeaderboard,'/contest/<contest_id>/leaderboard')
     api.add_resource(AdminLeaderboard,'/contest/<contest_id>/leaderboard/<user_id>')
-
     api.add_resource(RuncodeResource, '/runcode')
     api.add_resource(SubmitCodeResource, '/submit')
 
