@@ -36,14 +36,7 @@ class CreateChallenge extends Component {
   addTestCase = testCase => {
     this.setState(state => {
       return {
-        test_cases: [
-          ...state.test_cases,
-          {
-            test_case_name: testCase.testCaseName,
-            visibility: testCase.visibility,
-            strength: 0
-          }
-        ],
+        test_cases: [...state.test_cases, testCase],
         test_input: [...state.test_input, testCase.inputFile],
         test_output: [...state.test_output, testCase.outputFile]
       };
@@ -90,12 +83,19 @@ class CreateChallenge extends Component {
       constraints: this.state.constraints,
       output_format: this.state.output_format
     };
+    const test_cases = this.state.test_cases.map(tcs => {
+      return {
+        test_case_name: tcs.testCaseName,
+        visibility: tcs.visibility,
+        strength: tcs.strength
+      };
+    });
     // call api
 
     // set to initial state on successfull response
 
     form.append("challenge_details", JSON.stringify(data));
-    form.append("test_cases", JSON.stringify(this.state.test_cases));
+    form.append("test_cases", JSON.stringify(test_cases));
     form.append("settings", JSON.stringify(this.state.settings));
     for (let a = 0; a < this.state.test_input.length; a++) {
       form.append(

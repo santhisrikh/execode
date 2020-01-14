@@ -23,8 +23,9 @@ axiosInstance.interceptors.response.use(
     if (interceptorEnabled) {
       console.log("Response Status: ", response.status);
       console.log("Response Summary: ", response.data.summary);
-      console.log("Response Content: ", response.data.data);
+      console.log("Response Content: ", response.data);
     }
+    return response;
   },
   error => console.log(error)
 );

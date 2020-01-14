@@ -7,10 +7,12 @@ class AddTestCases extends Component {
     this.state = {
       testCaseName: "",
       visibility: true,
-      inputFile: null,
-      outputFile: null,
+      // inputFile: null,
+      // outputFile: null,
       strength: 0
     };
+    this.inputFile = React.createRef();
+    this.outputFile = React.createRef();
   }
 
   handleChange = event => {
@@ -23,11 +25,11 @@ class AddTestCases extends Component {
     });
   };
 
-  handleFiles = e => {
-    this.setState({
-      [e.target.name]: e.target.files[0]
-    });
-  };
+  // handleFiles = e => {
+  //   this.setState({
+  //     [e.target.name]: e.target.files[0]
+  //   });
+  // };
 
   render() {
     const { testCaseName, visibility, strength } = this.state;
@@ -88,7 +90,8 @@ class AddTestCases extends Component {
                 className="custom-file-input"
                 id="customFile"
                 name="inputFile"
-                onChange={this.handleFiles}
+                // onChange={this.handleFiles}
+                ref={this.inputFile}
               />
               Choose Input file
             </div>
@@ -103,14 +106,21 @@ class AddTestCases extends Component {
                 className="custom-file-input"
                 id="customFile"
                 name="outputFile"
-                onChange={this.handleFiles}
+                // onChange={this.handleFiles}
+                ref={this.outputFile}
               />
               Choose Output file
             </div>
           </div>
         </div>
         <button
-          onClick={() => addTestCase(this.state)}
+          onClick={() =>
+            addTestCase({
+              ...this.state,
+              inputFile: this.inputFile.current.files[0],
+              outputFile: this.outputFile.current.files[0]
+            })
+          }
           type="button"
           className="btn btn-primary btn-lg btn-block"
         >
