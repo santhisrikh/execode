@@ -2,24 +2,29 @@ import React, { Component } from "react";
 import ChallengeDetails from "../../../../components/ChallengeDetails/ChallengeDetails";
 import ChallengeSettings from "../../../../components/ChallengeSettings/ChallengeSettings";
 import AddTestCases from "../../../../components/AddTestCases/AddTestCases";
+import axios from "../../../../utils/axiosInterceptor";
+
+const initialState = {
+  detailsTab: true,
+  settingsTab: false,
+  testCasesTab: false,
+  challenge_name: "",
+  difficulty: "",
+  description: "",
+  problem_statement: "",
+  input_format: "",
+  constraints: "",
+  output_format: "",
+  settings: [],
+  test_cases: [],
+  test_input: [],
+  test_output: []
+};
 
 class CreateChallenge extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      detailsTab: true,
-      settingsTab: false,
-      testCasesTab: false,
-      challenge_name: "",
-      difficulty: "",
-      description: "",
-      problem_statement: "",
-      input_format: "",
-      constraints: "",
-      output_format: "",
-      test_cases: [],
-      settings: []
-    };
+    this.state = initialState;
   }
 
   handleDetailsChange = e => {
@@ -30,7 +35,18 @@ class CreateChallenge extends Component {
 
   addTestCase = testCase => {
     this.setState(state => {
-      return { test_cases: [...state.test_cases, testCase] };
+      return {
+        test_cases: [
+          ...state.test_cases,
+          {
+            test_case_name: testCase.testCaseName,
+            visibility: testCase.visibility,
+            strength: 0
+          }
+        ],
+        test_input: [...state.test_input, testCase.inputFile],
+        test_output: [...state.test_output, testCase.outputFile]
+      };
     });
   };
 
@@ -64,9 +80,41 @@ class CreateChallenge extends Component {
 
   createChallenge = () => {
     //   send data
+    const form = new FormData();
     // use new form data
+    const data = {
+      difficulty: this.state.difficulty,
+      description: this.state.description,
+      problem_statement: this.state.problem_statement,
+      input_format: this.state.input_format,
+      constraints: this.state.constraints,
+      output_format: this.state.output_format
+    };
     // call api
+
     // set to initial state on successfull response
+
+    form.append("challenge_details", JSON.stringify(data));
+    form.append("test_cases", JSON.stringify(this.state.test_cases));
+    form.append("settings", JSON.stringify(this.state.settings));
+    for (let a = 0; a < this.state.test_input.length; a++) {
+      form.append(
+        `test_case_input${a}`,
+        this.state.test_input[a],
+        this.state.test_input[a].name
+      );
+    }
+    for (let b = 0; b < this.state.test_output.length; b++) {
+      form.append(
+        `test_case_output${b}`,
+        this.state.test_output[b],
+        this.state.test_output[b].name
+      );
+    }
+    // console.log(form)
+    axios.post(`/challenge/${this.state.challenge_name}`, form).then(res => {
+      this.setState({ ...initialState });
+    });
   };
 
   render() {

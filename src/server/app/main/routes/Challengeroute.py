@@ -26,7 +26,7 @@ class Challenge(Resource):
         user_id = decode_auth_token(auth_token)
         if user_id:
             # check if he is admin            
-            Info = json.loads(request.form.get('info'))
+            Info = json.loads(request.form.get('challenge_details'))
             test_cases = json.loads(request.form.get('test_cases'))
             settings = json.loads(request.form.get('settings'))
             inp_count = 0
