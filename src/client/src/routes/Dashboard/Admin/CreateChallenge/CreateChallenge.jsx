@@ -7,7 +7,7 @@ class CreateChallenge extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      detailsTab: false,
+      detailsTab: true,
       settingsTab: false,
       testCasesTab: false,
       challenge_name: "",
@@ -30,7 +30,7 @@ class CreateChallenge extends Component {
 
   addTestCase = testCase => {
     this.setState(state => {
-      return { testCases: [...state.testCases, testCase] };
+      return { test_cases: [...state.test_cases, testCase] };
     });
   };
 
