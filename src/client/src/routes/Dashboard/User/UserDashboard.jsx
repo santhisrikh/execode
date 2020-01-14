@@ -6,7 +6,7 @@ class UserDashboard extends React.Component {
     this.state = {
       userLeaderboard: [
         {
-          name: "testing casing 123",
+          name: "testing",
           score: "212",
           rank: "31",
           testCases: "312"

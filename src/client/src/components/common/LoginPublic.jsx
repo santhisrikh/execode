@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React, { useState } from "react";
 
 const LoginPublic = () => {
@@ -20,42 +21,38 @@ const LoginPublic = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center mt-5">
-      <div className="card p-4">
-        <h2 className="lead text-center">Login To Execode</h2>
+    <div className="mb-4 mt-4">
+      <div>
+        <h4 className="text-center">Login To Execode</h4>
         <form onSubmit={onLoginSubmit}>
           <div className="form-group">
-            <label htmlFor="username">
-              Username
-              <input
-                type="text"
-                placeholder="Enter Username"
-                className="form-control"
-                name="username"
-                value={loginState.username}
-                onChange={onChange}
-              />
-            </label>
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              placeholder="Enter Username"
+              className="form-control"
+              name="username"
+              defaultValue={loginState.username}
+              onChange={onChange}
+            />
           </div>
           <div className="form-group">
-            <label htmlFor="password">
-              Password
-              <input
-                type="password"
-                placeholder="Enter Password"
-                className="form-control"
-                name="password"
-                value={loginState.password}
-                onChange={onChange}
-              />
-            </label>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              placeholder="Enter Password"
+              className="form-control"
+              name="password"
+              defaultValue={loginState.password}
+              onChange={onChange}
+            />
           </div>
           <div className="form-group mt-2">
-            <span className="d-flex align-items-center">
+            <span>
               <input
                 type="checkbox"
                 name="keepLoggedIn"
-                value={loginState.keepLoggedIn}
+                defaultValue={loginState.keepLoggedIn}
                 onChange={onChange}
               />
               <small className="text-muted ml-2">Keep me logged in</small>
@@ -64,7 +61,7 @@ const LoginPublic = () => {
           <input
             type="submit"
             className="btn btn-dark btn-block"
-            value="Login"
+            defaultValue="Login"
           />
         </form>
       </div>
