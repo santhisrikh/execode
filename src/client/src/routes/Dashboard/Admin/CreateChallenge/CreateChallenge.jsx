@@ -30,7 +30,7 @@ class CreateChallenge extends Component {
 
   addTestCase = testCase => {
     this.setState(state => {
-      return { testCases: [...state.testCases, testCase] };
+      return { test_cases: [...state.test_cases, testCase] };
     });
   };
 
@@ -89,13 +89,13 @@ class CreateChallenge extends Component {
       viewTab = (
         <ChallengeDetails
           handleChange={this.handleDetailsChange}
-          challengeName={challengeName}
+          challenge_name={challengeName}
           difficulty={difficulty}
           description={description}
-          problemStatement={problemStatement}
-          inputFormat={inputFormat}
+          problem_statement={problemStatement}
+          input_format={inputFormat}
           constraints={constraints}
-          outputFormat={outputFormat}
+          output_format={outputFormat}
         />
       );
     } else if (settingsTab) {

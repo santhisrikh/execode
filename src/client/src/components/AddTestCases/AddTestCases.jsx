@@ -6,7 +6,7 @@ class AddTestCases extends Component {
     super(props);
     this.state = {
       testCaseName: "",
-      visibility: false,
+      visibility: true,
       inputFile: null,
       outputFile: null,
       strength: 0
@@ -31,80 +31,81 @@ class AddTestCases extends Component {
 
   render() {
     const { testCaseName, visibility, strength } = this.state;
-    const { testCase, addTestCase } = this.props;
+    const { test_cases: testCases, addTestCase } = this.props;
     return (
       <div className="p-3">
         <div className="form-group row">
           <div className="col-sm-3">
-            <label htmlFor="challenge-name" className="col-sm-2 col-form-label">
-              Test Case Name
-              <input
-                type="text"
-                className="form-control"
-                id="challenge-name"
-                value={testCaseName}
-                name="testCaseName"
-                onChange={this.handleChange}
-              />
-            </label>
+            <label
+              htmlFor="challenge-name"
+              className="col-sm-2 col-form-label"
+            />
+            Test Case Name
+            <input
+              type="text"
+              className="form-control"
+              id="challenge-name"
+              value={testCaseName}
+              name="testCaseName"
+              onChange={this.handleChange}
+            />
           </div>
           <div className="col-sm-3">
-            <label htmlFor="challenge-name" className="col-sm-2 col-form-label">
-              Strength
-              <input
-                type="text"
-                className="form-control"
-                id="strength"
-                value={strength}
-                onChange={this.handleChange}
-                name="strength"
-              />
-            </label>
+            <label
+              htmlFor="challenge-name"
+              className="col-sm-2 col-form-label"
+            />
+            Strength
+            <input
+              type="text"
+              className="form-control"
+              id="strength"
+              value={strength}
+              onChange={this.handleChange}
+              name="strength"
+            />
           </div>
           <div className="col-sm-2">
-            <label className="form-check-label" htmlFor="Visibility">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                id="Visibility"
-                onChange={this.handleChange}
-                name="visibility"
-                value={visibility}
-              />
-              Visibility
-            </label>
+            <label className="form-check-label" htmlFor="Visibility" />
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="Visibility"
+              onChange={this.handleChange}
+              name="visibility"
+              value={visibility}
+            />
+            Visibility
           </div>
         </div>
 
         <div className="form-group row">
           <div className="col-sm-6">
             <div className="custom-file">
-              <label className="custom-file-label" htmlFor="customFile">
-                <input
-                  type="file"
-                  className="custom-file-input"
-                  id="customFile"
-                  name="inputFile"
-                  onChange={this.handleFiles}
-                />
-                Choose Input file
-              </label>
+              <label className="custom-file-label" htmlFor="customFile" />
+              <input
+                type="file"
+                className="custom-file-input"
+                id="customFile"
+                name="inputFile"
+                onChange={this.handleFiles}
+              />
+              Choose Input file
             </div>
           </div>
         </div>
         <div className="form-group row">
           <div className="col-sm-6">
             <div className="custom-file">
-              <label className="custom-file-label" htmlFor="customFile">
-                <input
-                  type="file"
-                  className="custom-file-input"
-                  id="customFile"
-                  name="outputFile"
-                  onChange={this.handleFiles}
-                />
-                Choose Output file
-              </label>
+              <label className="custom-file-label" htmlFor="customFile" />
+              <input
+                type="file"
+                className="custom-file-input"
+                id="customFile"
+                name="outputFile"
+                onChange={this.handleFiles}
+              />
+              Choose Output file
             </div>
           </div>
         </div>
@@ -131,21 +132,19 @@ class AddTestCases extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              {testCase
-                ? testCase.map(tCase => (
-                    <>
-                      <td>{tCase.inputFile.name}</td>
-                      <td>{tCase.outputFile.name}</td>
-                      <td>{tCase.testCaseName}</td>
-                      <td>{tCase.strength}</td>
-                      <td>No actions yet</td>
-                      <td>{tCase.visibility ? "Visible" : "Not Visible"}</td>
-                    </>
-                  ))
-                : null}
-            </tr>
+            {testCases
+              ? testCases.map((tCase, ind) => (
+                  <tr>
+                    <th scope="row">{ind + 1}</th>
+                    <td>{tCase.inputFile.name}</td>
+                    <td>{tCase.outputFile.name}</td>
+                    <td>{tCase.testCaseName}</td>
+                    <td>{tCase.strength}</td>
+                    <td>No actions yet</td>
+                    <td>{tCase.visibility ? "Visible" : "Not Visible"}</td>
+                  </tr>
+                ))
+              : null}
           </tbody>
         </table>
       </div>
@@ -155,6 +154,6 @@ class AddTestCases extends Component {
 
 AddTestCases.propTypes = {
   addTestCase: PropTypes.func.isRequired,
-  testCase: PropTypes.arrayOf(PropTypes.object).isRequired
+  test_cases: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 export default AddTestCases;
