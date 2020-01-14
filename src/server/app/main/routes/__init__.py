@@ -27,6 +27,8 @@ def add_resources(app):
     api.add_resource(AdminLeaderboard,'/contest/<contest_id>/leaderboard/<user_id>')
     api.add_resource(RuncodeResource, '/runcode')
     api.add_resource(SubmitCodeResource, '/submit')
+    api.add_resource(Challenge,'/challenge/<challenge_name>')
+    api.add_resource(AllChallenge,'/challenges')
 
 def register_blueprints(app):
     """
