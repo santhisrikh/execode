@@ -4,7 +4,8 @@ from app.main.routes.Contest import Contest
 from app.main.routes.UserLeaderboard import UserLeaderboard
 from app.main.routes.AdminLeaderboard import AdminLeaderboard
 from app.main.routes.RuncodeResource import RuncodeResource
-from app.main.routes.SubmitCodeResource import SubmitCodeResource
+from app.main.routes.SubmittedCode import SubmittedCode
+# from app.main.routes.SubmitCodeResource import SubmitCodeResource
 
 
 
@@ -23,9 +24,9 @@ def add_resources(app):
     api.add_resource(Contest, '/contest/<contest_name>')
     api.add_resource(UserLeaderboard,'/contest/<contest_id>/leaderboard')
     api.add_resource(AdminLeaderboard,'/contest/<contest_id>/leaderboard/<user_id>')
-
+    api.add_resource(SubmittedCode,'/contest/<contest_id>/leaderboard/<user_id>/code/<submission_id>')
     api.add_resource(RuncodeResource, '/runcode')
-    api.add_resource(SubmitCodeResource, '/submit')
+    # api.add_resource(SubmitCodeResource, '/submit')
 
 def register_blueprints(app):
     """
