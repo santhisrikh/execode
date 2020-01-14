@@ -24,17 +24,11 @@ class AddChallenges extends Component {
     });
   };
 
-  componentDidMount() {
-    // call api to fetch challenges and set state
-  }
-
   render() {
     const { challengeIds, addChallengeId } = this.props;
     const { challenge, challenges } = this.state;
 
-
     const selectedChallenges = challenges.filter(ch => {
-
       let found = false;
       challengeIds.forEach(id => {
         if (id === ch.id) {
@@ -45,7 +39,7 @@ class AddChallenges extends Component {
     });
     return (
       <div className="row">
-        <div className="col-sm-3">Contest Name</div>
+        <div className="col-sm-3">Challenge Name</div>
         <div className="col-sm-4">
           <select
             value={challenge}

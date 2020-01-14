@@ -5,7 +5,10 @@ from app.main.routes.UserLeaderboard import UserLeaderboard
 from app.main.routes.AdminLeaderboard import AdminLeaderboard
 from app.main.routes.RuncodeResource import RuncodeResource
 from app.main.routes.SubmitCodeResource import SubmitCodeResource
-
+from app.main.routes.AllChallenge import AllChallenge
+from app.main.routes.Challengeroute import Challenge
+from app.main.routes.Contests import Contests
+from app.main.routes.SubmittedCode import SubmittedCode
 
 
 def add_resources(app):
@@ -21,14 +24,17 @@ def add_resources(app):
     api.add_resource(FacebookAuthorize, '/facebook')
     api.add_resource(GithubAuthorize, '/github')
     api.add_resource(Contest, '/contest/<contest_name>')
-    api.add_resource(RuncodeResource, '/runcode')
-    api.add_resource(SubmitCodeResource, "/submitcode")
-    api.add_resource(UserLeaderboard,'/contest/<contest_id>/leaderboard')
-    api.add_resource(AdminLeaderboard,'/contest/<contest_id>/leaderboard/<user_id>')
+    api.add_resource(Contests, '/contests')
+    api.add_resource(UserLeaderboard, '/contest/<contest_id>/leaderboard')
+    api.add_resource(AdminLeaderboard,
+                     '/contest/<contest_id>/leaderboard/<user_id>')
     api.add_resource(RuncodeResource, '/runcode')
     api.add_resource(SubmitCodeResource, '/submit')
-    api.add_resource(Challenge,'/challenge/<challenge_name>')
-    api.add_resource(AllChallenge,'/challenges')
+    api.add_resource(Challenge, '/challenge/<challenge_name>')
+    api.add_resource(AllChallenge, '/challenges')
+    api.add_resource(
+        SubmittedCode, '/contest/<contest_id>/leaderboard/<user_id>/code/<submission_id>')
+
 
 def register_blueprints(app):
     """
