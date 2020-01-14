@@ -6,7 +6,7 @@ class AddTestCases extends Component {
     super(props);
     this.state = {
       testCaseName: "",
-      visibility: false,
+      visibility: true,
       inputFile: null,
       outputFile: null,
       strength: 0

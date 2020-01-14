@@ -28,7 +28,7 @@ const ChallengeDetails = ({
               className="form-control mt-2"
               id="challenge-name"
               value={challengeName}
-              name="challengeName"
+              name="challenge_name"
             />
           </div>
 
@@ -70,7 +70,7 @@ const ChallengeDetails = ({
           Problem Statement
           <textarea
             value={problemStatement}
-            name="problemStatement"
+            name="problem_statement"
             id="problemStatement"
             onChange={handleChange}
             className="form-control"
@@ -83,7 +83,7 @@ const ChallengeDetails = ({
           Input Format
           <textarea
             value={inputFormat}
-            name="inputFormat"
+            name="input_format"
             id="inputFormat"
             onChange={handleChange}
             className="form-control"
@@ -109,7 +109,7 @@ const ChallengeDetails = ({
           Output Format
           <textarea
             value={outputFormat}
-            name="outputFormat"
+            name="output_format"
             id="outputFormat"
             onChange={handleChange}
             className="form-control mb-2"
