@@ -7,7 +7,6 @@ import About from "./About";
 import Contact from "./Contact";
 import Home from "./Home";
 import NavBarPublic from "./NavbarPublic";
-import CreateChallenge from "./Dashboard/Admin/CreateChallenge/CreateChallenge";
 import NoMatch from "./NoMatch";
 
 const Routes = () => {
@@ -16,12 +15,11 @@ const Routes = () => {
       <Route path="/" component={NavBarPublic} />
       <Switch>
         <Route path="/" exact render={() => <Home />} />
-        <Route path="/dash" render={() => <DashboardRoutes />} />
+        <Route path="/dashboard" render={() => <DashboardRoutes />} />
         <Route path="/login" render={() => <Login />} />
         <Route path="/register" render={() => <Register />} />
         <Route path="/about" render={() => <About />} />
         <Route path="/contact" render={() => <Contact />} />
-        <Route path="/cc" render={() => <CreateChallenge />} />
         <Route component={NoMatch} />
       </Switch>
     </div>

@@ -22,7 +22,7 @@ class CreateContest extends Component {
 
   addChallengeId = id => {
     this.setState({
-      challenge_ids: [this.state.challenge_ids, id]
+      challenge_ids: [...this.state.challenge_ids, id]
     });
   };
 
@@ -105,7 +105,7 @@ class CreateContest extends Component {
         ) : (
           <AddChallenges
             addChallengeId={this.addChallengeId}
-            challenge_ids={this.state.challenge_ids}
+            challengeIds={this.state.challenge_ids}
           />
         )}
         <br />

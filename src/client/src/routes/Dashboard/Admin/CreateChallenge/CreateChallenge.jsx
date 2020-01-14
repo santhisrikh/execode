@@ -7,7 +7,7 @@ class CreateChallenge extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      detailsTab: false,
+      detailsTab: true,
       settingsTab: false,
       testCasesTab: false,
       challenge_name: "",
