@@ -4,7 +4,8 @@ from ..models.ContestsModel import ContestsModel
 from ..services.contest_detail import get_contests
 from app.main import db
 
+
 class Contests(Resource):
     @classmethod
     def get(self):
-        return get_contests()           
+        return get_contests()

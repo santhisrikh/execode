@@ -89,7 +89,7 @@ class AddContestDetails extends Component {
             name="details"
             value={this.props.details}
             onChange={this.props.handleDetailsChange}
-          ></textarea>
+          />
         </div>
       </div>
     );

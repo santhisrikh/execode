@@ -60,7 +60,7 @@ class AddChallenges extends Component {
               <option>Choose...</option>
               {challenges &&
                 challenges.map(c => (
-                  <option key={c.id + "select_challenge"} value={c.id}>
+                  <option key={`${c.id}select_challenge`} value={c.id}>
                     {c.challenge_name}
                   </option>
                 ))}
@@ -83,7 +83,7 @@ class AddChallenges extends Component {
             <ul>
               {selectedChallenges &&
                 selectedChallenges.map(cha => (
-                  <li key={cha.id + "selected_challenge"}>
+                  <li key={`${cha.id}selected_challenge`}>
                     {cha.challenge_name}
                   </li>
                 ))}

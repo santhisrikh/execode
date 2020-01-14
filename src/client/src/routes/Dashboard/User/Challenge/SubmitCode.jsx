@@ -13,8 +13,9 @@ class SubmitChallenge extends React.Component {
       language: "Javascript"
     };
   }
+
   render() {
-    let testwait = this.state.testcases.map(a => {
+    const testwait = this.state.testcases.map(a => {
       return (
         <div className="col-xl-5 ">
           <div className="spinner-border text-secondary" role="status">
@@ -24,7 +25,7 @@ class SubmitChallenge extends React.Component {
       );
     });
 
-    let testpass = this.state.testcases.map(a => {
+    const testpass = this.state.testcases.map(a => {
       console.log(a);
       if (a === 1) {
         return (
@@ -34,26 +35,25 @@ class SubmitChallenge extends React.Component {
                 src="https://image.flaticon.com/icons/png/512/368/368633.png"
                 className="col-xl-1"
                 alt="flat icon"
-              ></img>
-            </div>
-          </div>
-        );
-      } else {
-        return (
-          <div className="row">
-            <div>
-              <img
-                src="https://cdn1.iconfinder.com/data/icons/social-messaging-ui-color-round-1/254000/43-512.png"
-                className="col-xl-1"
-                alt="social messaging"
-              ></img>
+              />
             </div>
           </div>
         );
       }
+      return (
+        <div className="row">
+          <div>
+            <img
+              src="https://cdn1.iconfinder.com/data/icons/social-messaging-ui-color-round-1/254000/43-512.png"
+              className="col-xl-1"
+              alt="social messaging"
+            />
+          </div>
+        </div>
+      );
     });
 
-    let cd = this.state.code;
+    const cd = this.state.code;
     return (
       <div className="container">
         <h6 className="text-left">
