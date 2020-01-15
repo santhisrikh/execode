@@ -14,14 +14,10 @@ app.app_context().push()
 manager = Manager(app)
 migrate = Migrate(app, db, render_as_batch=True)
 manager.add_command('db', MigrateCommand)
-add_resources(app)
-app.register_blueprint(api_blueprint)
-register_blueprints(app)
 
 
 @manager.command
 def run():
-    # import pdb; pdb.set_trace()
     """
     This method runs the flask app using manager command 
     after adding the routes using the methods in routes folder
@@ -46,7 +42,7 @@ def test():
 
 if __name__ == "__main__":
     # if you want to use th manager
-    #manage.run()
+    manager.run()
     
     #comment the line below while using manager
-    app.run()
+    #app.run()

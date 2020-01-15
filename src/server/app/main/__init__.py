@@ -10,9 +10,7 @@ from flask_admin import Admin
 from flask_jwt_extended import JWTManager
 
 from .settings import config_by_name
-from app.main.utils.LogSetup import LogSetup
 
-logs = LogSetup()
 db = SQLAlchemy()
 admin = Admin()
 flask_bcrypt = Bcrypt()
@@ -40,27 +38,14 @@ def create_app(config_name):
     @app.after_request
     def after_request(response):
         """ Logging after every request. """
-        logger = logging.getLogger("app.access")
-        logger.info(
-            "%s [%s] %s %s %s %s %s %s %s",
-            request.remote_addr,
-            dt.utcnow().strftime("%d/%b/%Y:%H:%M:%S.%f")[:-3],
-            request.method,
-            request.path,
-            request.scheme,
-            response.status,
-            response.content_length,
-            request.referrer,
-            request.user_agent,
-        )
+        if app.config['ENV'] == 'development':
+            app.logger.info('The Response\n%s'%(response))
         return response
-
     return app
 
 def add_extentions(app):
     # api.init_app(app)
     db.init_app(app)
-    logs.init_app(app)
     flask_bcrypt.init_app(app)
     login_manager.init_app(app)
     admin.init_app(app)
