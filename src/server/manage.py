@@ -45,4 +45,8 @@ def test():
 
 
 if __name__ == "__main__":
-    manager.run()
+    # if you want to use th manager
+    #manage.run()
+    
+    #comment the line below while using manager
+    app.run()
