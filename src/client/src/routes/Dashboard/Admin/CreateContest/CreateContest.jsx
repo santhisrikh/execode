@@ -2,22 +2,25 @@
 import React, { Component } from "react";
 import AddContestDetails from "../../../../components/AddContestDetails/AddContestDetails";
 import AddChallenges from "../../../../components/AddChallenges/AddChallenges";
+import axios from "../../../../utils/axiosInterceptor";
+
+const initialState = {
+  detailsTab: true,
+  challengesTab: false,
+  contest_name: "",
+  start_date: "",
+  start_time: "",
+  end_date: "",
+  end_time: "",
+  details: "",
+  show_leaderboard: false,
+  challenge_ids: []
+};
 
 class CreateContest extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      detailsTab: true,
-      challengesTab: false,
-      contest_name: "",
-      start_date: "",
-      start_time: "",
-      end_date: "",
-      end_time: "",
-      details: "",
-      show_leaderboard: false,
-      challenge_ids: []
-    };
+    this.state = initialState;
   }
 
   addChallengeId = id => {
@@ -52,6 +55,12 @@ class CreateContest extends Component {
 
   createConest = () => {
     //   send the data here
+    const { contest_name } = this.state;
+    const data = this.state;
+    // remove some of the unwanted data. sending unwanted data
+    axios.post(`contest/${contest_name}`, data).then(response => {
+      this.setState({ ...initialState });
+    });
   };
 
   render() {

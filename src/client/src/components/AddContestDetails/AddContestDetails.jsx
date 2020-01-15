@@ -5,7 +5,7 @@ class AddContestDetails extends Component {
     return (
       <div className="mt-3">
         <div className="form-group row">
-          <label for="contest-name" className="col-sm-2 col-form-label">
+          <label htmlFor="contest-name" className="col-sm-2 col-form-label">
             Contest Name
           </label>
           <div className="col-sm-10">
@@ -20,7 +20,7 @@ class AddContestDetails extends Component {
           </div>
         </div>
         <div className="form-group row">
-          <label for="Start-Date" className="col-sm-2 col-form-label">
+          <label htmlFor="Start-Date" className="col-sm-2 col-form-label">
             Start Date
           </label>
           <div className="col-sm-4">
@@ -34,7 +34,7 @@ class AddContestDetails extends Component {
               onChange={this.props.handleDetailsChange}
             />
           </div>
-          <label for="Start-Time" className="col-sm-2 col-form-label">
+          <label htmlFor="Start-Time" className="col-sm-2 col-form-label">
             Start Time
           </label>
           <div className="col-sm-4">
@@ -50,7 +50,7 @@ class AddContestDetails extends Component {
           </div>
         </div>
         <div className="form-group row">
-          <label for="End-Date" className="col-sm-2 col-form-label">
+          <label htmlFor="End-Date" className="col-sm-2 col-form-label">
             Start Date
           </label>
           <div className="col-sm-4">
@@ -64,7 +64,7 @@ class AddContestDetails extends Component {
               onChange={this.props.handleDetailsChange}
             />
           </div>
-          <label for="End-Time" className="col-sm-2 col-form-label">
+          <label htmlFor="End-Time" className="col-sm-2 col-form-label">
             End Time
           </label>
           <div className="col-sm-4">
@@ -80,7 +80,7 @@ class AddContestDetails extends Component {
           </div>
         </div>
         <div className="form-group row">
-          <label for="" className="col-sm-3 col-form-label">
+          <label htmlFor="" className="col-sm-3 col-form-label">
             Landing Page Description
           </label>
           <textarea
@@ -89,7 +89,7 @@ class AddContestDetails extends Component {
             name="details"
             value={this.props.details}
             onChange={this.props.handleDetailsChange}
-          ></textarea>
+          />
         </div>
       </div>
     );
