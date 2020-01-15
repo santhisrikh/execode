@@ -24,6 +24,6 @@ def update_input_output(input_path, output_path, test_case_id):
     # save_changes(update_test_case)
     # update_input_output.output_file = output_path    
     # save_changes(update_test_case)
-    db.engine.execute(f"update test_cases set input_file='{input_path}', output_file='{output_path}' where id={test_case_id}")
+    db.engine.execute("update test_cases set input_file='{input_path}', output_file='{output_path}' where id={test_case_id}")
     db.session.commit()
     return True
