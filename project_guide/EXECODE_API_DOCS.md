@@ -1,3 +1,79 @@
+## Sign Up
+
+POST `/signup`
+
+#### REQUEST
+
+```json
+{
+     
+	"email": "STRING",
+	"name":"STRING",
+	"password": "STRING",
+}
+```
+
+#### RESPONSE
+
+```json
+{
+    "status": "success",
+    "message": "Successfully registered."
+}
+```
+
+## Login
+
+POST `/login`
+
+#### REQUEST
+
+```json
+{
+     
+	"email": "STRING",
+	"password": "STRING"
+}
+```
+
+#### RESPONSE
+
+```json
+{
+    "status": "success",
+    "message": "Successfully logged in.",
+    "Authorization": "<auth_token>"
+```
+
+## Logout
+
+POST `/logout`
+
+#### REQUEST
+
+##### Header
+```json
+{
+    "Authorization": "Bearer <auth_token>"
+}
+```
+##### Body
+```json
+{
+     
+	"email": "STRING",
+	"password": "STRING"
+}
+```
+
+#### RESPONSE
+
+```json
+{
+    "status": "success",
+    "message": "Token Deactivated",
+```
+
 ## Challenge
 ​
 GET `/challenge/<challenge_name>`
