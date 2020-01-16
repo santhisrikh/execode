@@ -6,7 +6,7 @@ const NavBar = ({ location: { pathname } }) => {
   if (pathname.startsWith("/dash")) return null;
   return (
     <div>
-      <nav className="navbar navbar-dark bg-dark navbar-expand-md mb-4">
+      <nav className="navbar navbar-dark bg-dark navbar-expand-md">
         <div className="container">
           <a className="navbar-brand" href="/">
             <i className="fas fa-file-code" />
