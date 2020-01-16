@@ -25,7 +25,7 @@ const LoginPublic = () => {
       <div>
         <h4 className="text-center">Login To Execode</h4>
         <form onSubmit={onLoginSubmit}>
-          <div className="form-group">
+          <div className="form-group mb-3">
             <label htmlFor="username">Username</label>
             <input
               type="text"
@@ -36,7 +36,7 @@ const LoginPublic = () => {
               onChange={onChange}
             />
           </div>
-          <div className="form-group">
+          <div className="form-group mb-3">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -60,7 +60,7 @@ const LoginPublic = () => {
           </div>
           <input
             type="submit"
-            className="btn btn-dark btn-block"
+            className="btn btn-dark btn-block btn-lg"
             defaultValue="Login"
           />
         </form>
