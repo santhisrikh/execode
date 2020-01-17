@@ -30,7 +30,7 @@ const Register = () => {
           <input id="password" type="password" className="form-control" />
         </div>
         <button type="submit" className="btn btn-dark btn-block">
-          Create An Account
+          Register
         </button>
       </form>
     </div>
