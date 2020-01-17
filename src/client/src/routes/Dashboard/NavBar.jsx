@@ -6,10 +6,12 @@ const NavBar = () => {
     <div>
       <nav className="navbar navbar-dark bg-dark navbar-expand-md mb-4">
         <div className="container">
-          <a className="navbar-brand" href="/">
-            <i className="fas fa-file-code" />
-            <span className="text-monospace"> ExeCode</span>
-          </a>
+          <ul className="navbar-brand">
+            <Link className="nav-link text-light" to="/dashboard">
+              <i className="fas fa-file-code" />
+              <span className="text-monospace"> ExeCode</span>
+            </Link>
+          </ul>
           <div
             data-toggle="collapse"
             className="navbar-toggler"
