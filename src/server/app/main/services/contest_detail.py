@@ -75,18 +75,15 @@ def get_contests():
 
 
 def add_contest(data, contest_name):
-    challenges_ids = []
-    contest_name = data['contest_name']
-    start = data['start_date']
-    end = data['end_date']
-    details = data['details']
-    show_leaderboard = data['show_leader_board']
-    challenges_ids = data['challenges_ids']
+    end = data['end_date']+" "+data['end_time']
+    start = data['start_date']+" "+data['start_time']
     new_asset = ContestsModel(contest_name=contest_name, start=start,
-                              end=end, details=details, show_leaderboard=show_leaderboard,)
+                              end=end, details=data["details"], show_leaderboard=data["show_leaderboard"])
+
     save_changes(new_asset)
+
     contest_id = new_asset.id
-    for i in challenges_ids:
+    for challenge_id in data["challenges_ids"]:
         new_asset = db.engine.execute(
-            "insert into contests_challenges (challenge_id,contest_id) values ({},{})".format(i, contest_id))
+            "insert into contests_challenges (challenge_id,contest_id) values ({},{})".format(challenge_id, contest_id))
     return True
