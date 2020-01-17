@@ -2,7 +2,12 @@ import {
   LOGIN_USER_REQUEST,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAILURE,
-  LOGOUT_USER
+  LOGOUT_USER_REQUEST,
+  LOGOUT_USER_SUCCESS,
+  LOGOUT_USER_FAILURE,
+  REGISTER_USER_REQUEST,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_FAILURE
 } from "./actionTypes";
 
 let localToken = localStorage.getItem("token");
@@ -11,7 +16,12 @@ if (localToken === "undefined") localToken = "";
 const initState = {
   isAuth: false,
   isLoading: false,
-  token: localToken
+  token: localToken,
+  isRegistering: false,
+  registerSuccess: false,
+  error: false,
+  errorType: "",
+  errorMessage: ""
 };
 
 const reducer = (state = initState, { type, payload }) => {
@@ -19,10 +29,12 @@ const reducer = (state = initState, { type, payload }) => {
     case LOGIN_USER_REQUEST:
       return {
         ...state,
+        error: false,
+        errorType: "",
+        errorMessage: "",
         isLoading: true
       };
     case LOGIN_USER_SUCCESS:
-      console.log(payload);
       localStorage.setItem("token", payload.Authorization);
       return {
         ...state,
@@ -31,19 +43,56 @@ const reducer = (state = initState, { type, payload }) => {
         isLoading: false
       };
     case LOGIN_USER_FAILURE:
-      localStorage.setItem("token", "");
       return {
         ...state,
         isAuth: false,
         token: "",
-        isLoading: false
+        isLoading: false,
+        error: true,
+        errorType: "login",
+        errorMessage: "login failed"
       };
-    case LOGOUT_USER:
+    case LOGOUT_USER_REQUEST:
+      return {
+        ...state,
+        error: false,
+        errorType: "",
+        errorMessage: ""
+      };
+    case LOGOUT_USER_SUCCESS:
       localStorage.setItem("token", "");
       return {
         ...state,
         isAuth: false,
         token: ""
+      };
+    case LOGOUT_USER_FAILURE:
+      return {
+        ...state,
+        error: true,
+        errorType: "logout",
+        errorMessage: "logout failed"
+      };
+    case REGISTER_USER_REQUEST:
+      return {
+        ...state,
+        error: false,
+        errorType: "",
+        errorMessage: "",
+        isRegistering: true
+      };
+    case REGISTER_USER_SUCCESS:
+      return {
+        ...state,
+        isRegistering: false
+      };
+    case REGISTER_USER_FAILURE:
+      return {
+        ...state,
+        isRegistering: false,
+        error: true,
+        errorType: "register",
+        errorMessage: "registration failed"
       };
     default:
       return state;
