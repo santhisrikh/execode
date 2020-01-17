@@ -78,6 +78,7 @@ class UserModel(db.Model):
             #     return 'Token blacklisted. Please log in again.'
             # else:
             #     return payload['sub']
+            return True
         except jwt.ExpiredSignatureError:
             return 'Signature expired. Please log in again.'
         except jwt.InvalidTokenError:

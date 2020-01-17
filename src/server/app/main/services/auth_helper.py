@@ -40,10 +40,13 @@ class Auth:
             auth_token = ''
         if auth_token:
             resp = UserModel.decode_auth_token(auth_token)
-            if not isinstance(resp, str):
-                # mark the token as blacklisted
-                # return save_token(token=auth_token)
-                pass
+            if resp == True:
+                
+                response_object = {
+                    'status': 'success',
+                    'message': 'Token Deactivated'
+                }
+                return response_object, 200
             else:
                 response_object = {
                     'status': 'fail',
