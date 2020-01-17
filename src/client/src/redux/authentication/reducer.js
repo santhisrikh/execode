@@ -5,16 +5,16 @@ import {
   LOGOUT_USER
 } from "./actionTypes";
 
-const localToken = localStorage.getItem("token");
+let localToken = localStorage.getItem("token");
+if (localToken === "undefined") localToken = "";
 
 const initState = {
-  isAuth: true,
+  isAuth: false,
   isLoading: false,
-  token: localToken || ""
+  token: localToken
 };
 
 const reducer = (state = initState, { type, payload }) => {
-  console.log("reducer called", payload);
   switch (type) {
     case LOGIN_USER_REQUEST:
       return {
@@ -22,15 +22,18 @@ const reducer = (state = initState, { type, payload }) => {
         isLoading: true
       };
     case LOGIN_USER_SUCCESS:
-      localStorage.setItem("token", payload.token);
+      console.log(payload);
+      localStorage.setItem("token", payload.Authorization);
       return {
+        ...state,
         isAuth: true,
-        token: payload.token,
+        token: payload.Authorization,
         isLoading: false
       };
     case LOGIN_USER_FAILURE:
       localStorage.setItem("token", "");
       return {
+        ...state,
         isAuth: false,
         token: "",
         isLoading: false
@@ -38,6 +41,7 @@ const reducer = (state = initState, { type, payload }) => {
     case LOGOUT_USER:
       localStorage.setItem("token", "");
       return {
+        ...state,
         isAuth: false,
         token: ""
       };

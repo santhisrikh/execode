@@ -32,7 +32,7 @@ export const loginUser = payload => {
         password: payload.password
       })
       .then(res => {
-        dispatch(loginUserSuccess(res));
+        dispatch(loginUserSuccess(res.data));
       })
       .catch(() => dispatch(loginUserFail()));
   };

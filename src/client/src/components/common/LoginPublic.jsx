@@ -1,9 +1,10 @@
 /*eslint-disable*/
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { loginUser } from "../../redux/authentication/actions";
 import { connect } from "react-redux";
 
-const LoginPublic = ({ loginUser }) => {
+const LoginPublic = ({ loginUser, isAuth, token }) => {
   const [loginState, setLoginState] = useState({
     email: "",
     password: "",
@@ -19,7 +20,6 @@ const LoginPublic = ({ loginUser }) => {
   };
 
   const onLoginSubmit = e => {
-    console.log("hello");
     e.preventDefault();
     let payload = {
       email: loginState.email,
@@ -27,8 +27,9 @@ const LoginPublic = ({ loginUser }) => {
     };
     loginUser(payload);
   };
-
-  return (
+  return isAuth ? (
+    <Redirect to="/dashboard" />
+  ) : (
     <div className="mb-4 mt-4">
       <div>
         <h4 className="text-center">Login To Execode</h4>
@@ -79,14 +80,14 @@ const LoginPublic = ({ loginUser }) => {
   );
 };
 
-const mapStateToProps = staet => ({
-  isAuth: authReducer.isAuth,
-  isLoading: authReducer.isLoading,
-  token: authReducer.token
+const mapStateToProps = state => ({
+  isAuth: state.authReducer.isAuth,
+  isLoading: state.authReducer.isLoading,
+  token: state.authReducer.token
 });
 
 const mapDispatchToProps = dispatch => ({
   loginUser: payload => dispatch(loginUser(payload))
 });
 
-export default connect(null, mapDispatchToProps)(LoginPublic);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPublic);
