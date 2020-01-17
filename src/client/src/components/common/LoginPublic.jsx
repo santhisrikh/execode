@@ -1,9 +1,11 @@
 /*eslint-disable*/
 import React, { useState } from "react";
+import { loginUser } from "../../redux/authentication/actions";
+import { connect } from "react-redux";
 
-const LoginPublic = () => {
+const LoginPublic = ({ loginUser }) => {
   const [loginState, setLoginState] = useState({
-    username: "",
+    email: "",
     password: "",
     keepLoggedIn: false
   });
@@ -17,7 +19,13 @@ const LoginPublic = () => {
   };
 
   const onLoginSubmit = e => {
+    console.log("hello");
     e.preventDefault();
+    let payload = {
+      email: loginState.email,
+      password: loginState.password
+    };
+    loginUser(payload);
   };
 
   return (
@@ -31,8 +39,8 @@ const LoginPublic = () => {
               type="text"
               placeholder="Enter Username"
               className="form-control"
-              name="username"
-              defaultValue={loginState.username}
+              name="email"
+              value={loginState.username}
               onChange={onChange}
             />
           </div>
@@ -43,7 +51,7 @@ const LoginPublic = () => {
               placeholder="Enter Password"
               className="form-control"
               name="password"
-              defaultValue={loginState.password}
+              value={loginState.password}
               onChange={onChange}
             />
           </div>
@@ -58,15 +66,27 @@ const LoginPublic = () => {
               <small className="text-muted ml-2">Keep me logged in</small>
             </span>
           </div>
-          <input
-            type="submit"
-            className="btn btn-dark btn-block btn-lg"
-            defaultValue="Login"
-          />
+          <div className="col-xs-3 col-sm-6 col-md-6 col-lg-4 col-xl-3 m-auto">
+            <input
+              type="submit"
+              className="btn btn-dark btn-block btn-xs"
+              value="Login"
+            />
+          </div>
         </form>
       </div>
     </div>
   );
 };
 
-export default LoginPublic;
+const mapStateToProps = staet => ({
+  isAuth: authReducer.isAuth,
+  isLoading: authReducer.isLoading,
+  token: authReducer.token
+});
+
+const mapDispatchToProps = dispatch => ({
+  loginUser: payload => dispatch(loginUser(payload))
+});
+
+export default connect(null, mapDispatchToProps)(LoginPublic);
