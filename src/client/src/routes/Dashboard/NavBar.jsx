@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-// import styles from "./DashboardRoutes.module.css";
 
 const NavBar = () => {
   return (
@@ -22,22 +21,25 @@ const NavBar = () => {
           <div className="collapse navbar-collapse" id="navcol-1">
             <ul className="nav navbar-nav ml-auto">
               <li role="presentation" className="nav-item">
-                <Link className="nav-link text-light" to="/dash">
+                <Link className="nav-link text-light" to="/dashboard">
                   Dashboard
                 </Link>
               </li>
               <li role="presentation" className="nav-item">
-                <Link className="nav-link text-light" to="/dash/settings">
+                <Link className="nav-link text-light" to="/dashboard/settings">
                   Settings
                 </Link>
               </li>
               <li role="presentation" className="nav-item">
-                <Link className="nav-link text-light" to="/dash/profile">
+                <Link className="nav-link text-light" to="/dashboard/profile">
                   Profile
                 </Link>
               </li>
               <li role="presentation" className="nav-item">
-                <NavLink className="nav-link text-light" to="/dash/reports">
+                <NavLink
+                  className="nav-link text-light"
+                  to="/dashboard/reports"
+                >
                   Reports
                 </NavLink>
               </li>
