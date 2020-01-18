@@ -1,14 +1,13 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
-const NavBar = ({ location }) => {
-  const { pathname } = location;
+const NavBar = ({ location: {pathname} }) => {
   let adminLinks = null;
   if (pathname.startsWith("/dashboard/admin")) {
     adminLinks = [
       { name: "Contests", path: "all-contest" },
       { name: "Create Contest", path: "create-contest" },
-      { name: "Contests", path: "create-challenge" }
+      { name: "Create Challenge", path: "create-challenge" }
     ].map(link => (
       <li role="presentation" className="nav-item">
         <Link
@@ -52,22 +51,9 @@ const NavBar = ({ location }) => {
                 </Link>
               </li>
               <li role="presentation" className="nav-item">
-                <Link className="nav-link text-light" to="/dashboard/settings">
-                  Settings
-                </Link>
-              </li>
-              <li role="presentation" className="nav-item">
                 <Link className="nav-link text-light" to="/dashboard/profile">
                   Profile
                 </Link>
-              </li>
-              <li role="presentation" className="nav-item">
-                <NavLink
-                  className="nav-link text-light"
-                  to="/dashboard/reports"
-                >
-                  Reports
-                </NavLink>
               </li>
             </ul>
           </div>
