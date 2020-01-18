@@ -14,7 +14,7 @@ let localToken = localStorage.getItem("token");
 if (localToken === "undefined") localToken = "";
 
 const initState = {
-  isAuth: false,
+  isAuth: true,
   isLoading: false,
   token: localToken,
   isRegistering: false,

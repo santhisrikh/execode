@@ -1,0 +1,4 @@
+diff a/src/client/src/components/common/LoginPublic.jsx b/src/client/src/components/common/LoginPublic.jsx	(rejected hunks)
+@@ -6 +6 @@ import {connect} from "react-redux";
+-const LoginPublic = ({loginUser}) => {
++const LoginPublic = ({ loginUser }) => {
