@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { fetchAllContests } from "../../../../redux/admin/action";
 
 const AllContest = ({
   contests: contestFinalData,
   getContests,
+  getContestId,
   token
 }) => {
   useEffect(() => {
@@ -13,7 +15,7 @@ const AllContest = ({
     };
     getContests(payload);
   }, []);
-  const res = contestFinalData.slice(1).map(contest => {
+  const res = contestFinalData.slice(1).map(contest => {  
     return (
       <div className="col-xl-5 col-sm-12 col-md-6  mb-3 mr-2  card shadow ">
         <div className="row align-items-center justify-content-around card-body">
@@ -22,8 +24,14 @@ const AllContest = ({
             <p>{` START DATE: ${contest.start_date} | END DATE: ${contest.end_date} | END TIME: ${contest.end_time}`}</p>
           </div>
           <div className="col-xs-4 col-sm-4 p-1">
-            <button type="submit" className="btn btn-success border">
-              View Submission
+            {/* <button type="submit" value ={contest.contest_id} onClick = {getContestId} className="btn btn-success border"> */}
+            <button className="btn btn-success">
+              <Link
+                className="text-light"
+                to={`/dashboard/admin/${contest.contest_id}/leaderboard`}
+              >
+                View Submission
+              </Link>
             </button>
           </div>
         </div>

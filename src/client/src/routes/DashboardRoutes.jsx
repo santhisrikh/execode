@@ -11,7 +11,6 @@ import TodayContest from "./Dashboard/User/Contest/TodayContest";
 import ContestChallenge from "./Dashboard/User/Challenge/ContestChallenge";
 import SingleChallenge from "./Dashboard/User/Challenge/SingleChallenge";
 import SubmitCode from "./Dashboard/User/Challenge/SubmitCode";
-
 import AdminDashboard from "./Dashboard/Admin/AdminDashboard";
 import AllContest from "./Dashboard/Admin/Contest/AllContest";
 import ContestLeaderboard from "./Dashboard/Admin/Contest/ContestLeaderboard";
@@ -64,15 +63,20 @@ const DashboardRoutes = props => {
         render={() => <AllContest />}
       />
       <Route
-        path="/dashboard/admin/contest-leaderboard/"
-        exact
-        render={() => <ContestLeaderboard />}
-      />
-      <Route
-        path="/dashboard/admin/:contestName/user-submission"
+        path="/dashboard/admin/:contestId/leaderboard/"
         exact
         render={({ match }) => (
-          <UserSubmissions contestName={match.params.contestName} />
+          <ContestLeaderboard contestId={match.params.contestId} />
+        )}
+      />
+      <Route
+        path="/dashboard/admin/:contestId/user-submission/:userId"
+        exact
+        render={({ match }) => (
+          <UserSubmissions
+            contestId={match.params.contestId}
+            userId={match.params.userId}
+          />
         )}
       />
       <Route
