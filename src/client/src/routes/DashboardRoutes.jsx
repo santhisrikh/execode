@@ -64,14 +64,16 @@ const DashboardRoutes = props => {
         render={() => <AllContest />}
       />
       <Route
-        path="/dashboard/admin/contest-leaderboard"
+        path="/dashboard/admin/contest-leaderboard/"
         exact
         render={() => <ContestLeaderboard />}
       />
       <Route
-        path="/dashboard/admin/user-submission"
+        path="/dashboard/admin/:contestName/user-submission"
         exact
-        render={() => <UserSubmissions />}
+        render={({ match }) => (
+          <UserSubmissions contestName={match.params.contestName} />
+        )}
       />
       <Route
         path="/dashboard/admin/create-challenge"

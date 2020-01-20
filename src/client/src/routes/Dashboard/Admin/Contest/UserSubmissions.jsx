@@ -22,7 +22,7 @@ class UserSubmissions extends Component {
   };
 
   render() {
-    const { submissions, code, language } = this.props;
+    const { submissions, code, language, contestName } = this.props;
     return (
       <>
         <div className="row d-flex justify-content-center mt-4">
