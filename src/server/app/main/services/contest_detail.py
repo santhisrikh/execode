@@ -6,6 +6,7 @@ import datetime
 from app.main.models.ContestsModel import ContestsModel
 from app.main.models.ChallengesModel import ChallengesModel
 from app.main.models.ContestsChallengesModel import contests_challenges
+import time
 
 
 def save_changes(data):
@@ -55,14 +56,14 @@ def get_contests_challenges(contest_name):
     #     print(item)
     return resp
 
-
 def get_contests():
     print('in the contest')
-    data = {}
+    resp_data = []
     result_data = db.engine.execute("select *from contests")
     final_val = [dict(row) for row in result_data]
     print(final_val)
     for j in final_val:
+        data = {}
         data["id"] = j['id']
         data["contest_name"] = j['contest_name']
         data['start'] = str(j['start'].strftime("%m/%d/%Y"))
@@ -70,7 +71,8 @@ def get_contests():
         data['details'] = j['details']
         data['show_leaderboard'] = j['show_leaderboard']
         data['created_at'] = str(j['created_at'].strftime("%m/%d/%Y"))
-    resp = {"contests": data}
+        resp_data.append(data)
+    resp = {"contests": resp_data}
     return resp
 
 
@@ -87,3 +89,4 @@ def add_contest(data, contest_name):
         new_asset = db.engine.execute(
             "insert into contests_challenges (challenge_id,contest_id) values ({},{})".format(challenge_id, contest_id))
     return True
+
