@@ -4,9 +4,11 @@ from .. import db
 
 
 def save_changes(data):
-    db.session.add(data)
-    db.session.commit()
-
+    try:
+        db.session.add(data)
+        db.session.commit()
+    except:
+        db.session.rollback()
 
 def add_submission(language_name, user_id, contest_challenge_id):
     new_submission = SubmissionsModel(

@@ -1,42 +1,89 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import axios from "../../../../utils/axiosInterceptor";
 
-const TodayContest = () => {
-  return (
-    <div>
-      <h4 className="lead ml-4">Today Contest</h4>
-      <hr />
-      <div className="container">
-        <div className="row">
-          <div className="col-12 col-md-6">
-            <div className="container  border  bg-light shadow">
-              <div className="row  mt-3 ">
-                <div className="col-8">
-                  <div className="row p-3">
-                    <h3 className="lead">Contest Name</h3>
-                  </div>
-                  <div className="row mb-2">
-                    <div className="col-4 border-right">Start Time</div>
-                    <div className="col-4 border-right">End Time</div>
-                    <div className="col-4 ">Date</div>
-                  </div>
-                </div>
-                <div className="col-4 p-3">
-                  <button
-                    type="submit"
-                    className="btn btn-success btn-block px-2"
-                  >
-                    Enter
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr />
-      <h4 className="lead ml-4">All Contests</h4>
-    </div>
-  );
-};
+class TodayContest extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			contestFinalData: []
+		};
+	}
+
+	componentDidMount() {
+		axios
+			.get("/contests")
+			.then(res => {
+				console.log(res.data);
+				this.setState({
+					contestFinalData: res.data.contests
+				});
+			})
+			.catch(err => console.log(err));
+	}
+	render() {
+		const res = this.state.contestFinalData.map(contest => {
+			return (
+				<div className='col-xl-5 col-sm-12 col-md-6  mb-3 mr-2  card shadow '>
+					<div className='row align-items-center justify-content-around card-body'>
+						<div className='col-xs-8 col-sm-8'>
+							<h3 className='text-primary'>{contest.contest_name}</h3>
+							<div className='row'>
+								<p className='col-5'> Start Date {contest.start_date}</p>
+								<p className='col-5'>End Date {contest.end_date} </p>
+							</div>
+							<div className='row'>
+								<p className='col-5'>
+									{" "}
+									Start Time <span className='text-danger'>{contest.start_time}</span>
+								</p>
+								<p className='col-5'>
+									End Time <span className='text-danger'>{contest.end_time}</span>{" "}
+								</p>
+							</div>
+						</div>
+						<div className='col-xs-4 col-sm-4 p-1'>
+							<Link className='text-light' to={`/dashboard/user/${contest.contest_name}`}>
+								<button className='btn btn-success'>Enter</button>
+							</Link>
+						</div>
+					</div>
+				</div>
+			);
+		});
+		// const todayContest = this.state.contestFinalData.map(contest => {
+		//   return (
+		//     <div className="col-xl-5 col-sm-12 col-md-6  mb-3 mr-2  card shadow ">
+		//       <div className="row align-items-center justify-content-around card-body">
+		//         <div className="col-xs-8 col-sm-8">
+		//           <h3 className="text-primary">{contest.contest_name}</h3>
+		//           <p>{` START DATE: ${contest.start_date} | END DATE: ${contest.end_date} | START TIME: ${contest.start_time}| END TIME: ${contest.end_time}`}</p>
+		//         </div>
+		//         <div className="col-xs-4 col-sm-4 p-1">
+		//             <Link
+		//               className="text-light"
+		//               to={`/dashboard/user/${contest.contest_name}`}><button className="btn btn-success">
+		//               Enter
+		//               </button>
+		//             </Link>
+		//         </div>
+		//       </div>
+		//     </div>
+		//   );
+		// });
+		return (
+			<div>
+				{/* <div className="container">
+      <div className = "text-success h3">Today Contests</div>
+      <div className="row">{todayContest}</div>
+    </div> */}
+				<div className='container'>
+					<div className='text-success h2'>All contests</div>
+					<div className='row'>{res}</div>
+				</div>
+			</div>
+		);
+	}
+}
 
 export default TodayContest;
