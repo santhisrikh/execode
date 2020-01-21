@@ -10,8 +10,11 @@ import time
 
 
 def save_changes(data):
-    db.session.add(data)
-    db.session.commit()
+    try:
+        db.session.add(data)
+        db.session.commit()
+    except:
+        db.session.rollback()
 
 
 def find_by_name(cls, contest_name):
@@ -24,17 +27,21 @@ def find_by_name(cls, contest_name):
 
 
 def get_contests_challenges(contest_name):
-    data = {}
-    challenge_data = {}
+    
+    #challenge_data = {}
     # import pdb; pdb.set_trace()
     data_raw = db.engine.execute(
         "select * from contests join contests_challenges on contests.id=contests_challenges.contest_id join challenges on contests_challenges.challenge_id=challenges.id where contests.contest_name='{}'".format(contest_name))
     names = [dict(row) for row in data_raw]
     challenges_arr = []
+    data = {}
     for i in names:
+        challenge_data = {}
         data['contest_name'] = i['contest_name']
-        data['start_date'] = str(i['start'].strftime("%m/%d/%Y"))
-        data['end_date'] = str(i['end'].strftime("%m/%d/%Y"))
+        data['start_date'] = str(j['start'].strftime("%m/%d/%Y"))
+        data['start_time'] = str(j['start'].strftime("%H:%M"))
+        data['end_date'] = str(j['end'].strftime("%m/%d/%Y"))
+        data['end_time'] = str(j['end'].strftime("%H:%M"))
         data['details'] = i['details']
         data['show_leaderboard'] = i['show_leaderboard']
         data['created_at'] = str(i['created_at'])
@@ -49,9 +56,9 @@ def get_contests_challenges(contest_name):
         challenge_data['created_at'] = str(
             i['created_at'].strftime("%m/%d/%Y"))
         challenges_arr.append(challenge_data)
-        data['challenges'] = challenges_arr
+        #data['challenges'] = challenges_arr
        # data_date =(names[0]['start'].strftime("%m/%d/%Y"))
-    resp = {"data": data}
+    resp = {"data": challenges_arr, "contest_data": data}
     # for item in resp["data"]:
     #     print(item)
     return resp
@@ -66,11 +73,13 @@ def get_contests():
         data = {}
         data["id"] = j['id']
         data["contest_name"] = j['contest_name']
-        data['start'] = str(j['start'].strftime("%m/%d/%Y"))
-        data['end'] = str(j['end'].strftime("%m/%d/%Y"))
+        data['start_date'] = str(j['start'].strftime("%m/%d/%Y"))
+        data['start_time'] = str(j['start'].strftime("%H:%M"))
+        data['end_date'] = str(j['end'].strftime("%m/%d/%Y"))
+        data['end_time'] = str(j['end'].strftime("%H:%M"))
         data['details'] = j['details']
         data['show_leaderboard'] = j['show_leaderboard']
-        data['created_at'] = str(j['created_at'].strftime("%m/%d/%Y"))
+        data['created_at'] = str(j['created_at'].strftime("%m/%d/%Y %H:%M"))
         resp_data.append(data)
     resp = {"contests": resp_data}
     return resp

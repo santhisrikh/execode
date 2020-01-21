@@ -27,10 +27,12 @@ class UserModel(db.Model):
 
     @classmethod
     def addTestUser(cls):
-
-        db.session.add(cls(
-            **{"name": "sachin2", "email": "beckhamd@gmail.com", "role": "admin", "salt": "xyz"}))
-        db.session.commit()
+        try:
+            db.session.add(cls(
+                **{"name": "sachin2", "email": "beckhamd@gmail.com", "role": "admin", "salt": "xyz"}))
+            db.session.commit()
+        except:
+            db.session.rollback()
 
     @property
     def password(self):
