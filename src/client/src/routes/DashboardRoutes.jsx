@@ -2,13 +2,13 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import UserDashboard from "./Dashboard/User/UserDashboard";
+// import UserDashboard from "./Dashboard/User/UserDashboard";
 import Settings from "./Dashboard/Settings";
 import Profile from "./Dashboard/Profile";
 import Reports from "./Dashboard/Reports";
 import NavBar from "./Dashboard/NavBar";
 import TodayContest from "./Dashboard/User/Contest/TodayContest";
-import ContestChallenge from "./Dashboard/User/Challenge/ContestChallenge";
+// import ContestChallenge from "./Dashboard/User/Challenge/ContestChallenge";
 import SingleChallenge from "./Dashboard/User/Challenge/SingleChallenge";
 import SubmitCode from "./Dashboard/User/Challenge/SubmitCode";
 import AdminDashboard from "./Dashboard/Admin/AdminDashboard";
@@ -17,32 +17,41 @@ import ContestLeaderboard from "./Dashboard/Admin/Contest/ContestLeaderboard";
 import UserSubmissions from "./Dashboard/Admin/Contest/UserSubmissions";
 import CreateChallenge from "./Dashboard/Admin/CreateChallenge/CreateChallenge";
 import CreateContest from "./Dashboard/Admin/CreateContest/CreateContest";
+import ContestDetails from "./Dashboard/User/Contest/ContestDetails";
 
 const DashboardRoutes = props => {
   const { isAuth } = props;
   return isAuth ? (
     <>
       <Route path="/dashboard" render={NavBar} />
-      <Route path="/dashboard" exact render={() => <UserDashboard />} />
+      {/* <Route path="/dashboard" exact render={() => <UserDashboard />} /> */}
       {/* <Route
         path="/dashboard/user/all-contest/"
         exact
         render={() => <UserDashboard />}
       /> */}
-      <Route
-        path="/dashboard/user/contest/"
-        exact
-        render={() => <ContestChallenge />}
-      />
-      <Route
+      <Route path="/dashboard" exact render={() => <TodayContest />} />
+      {/* <Route
         path="/dashboard/user/contest/today"
         exact
         render={() => <TodayContest />}
+      /> */}
+      <Route
+        path="/dashboard/user/:contestId"
+        exact
+        render={({ match }) => (
+          <ContestDetails contestId={match.params.contestId} />
+        )}
       />
       <Route
-        path="/dashboard/user/contest/challenge"
+        path="/dashboard/user/:contestId/:challengeId"
         exact
-        render={() => <SingleChallenge />}
+        render={({ match }) => (
+          <SingleChallenge
+            contestId={match.params.contestId}
+            challengeId={match.params.challengeId}
+          />
+        )}
       />
       <Route
         path="/dashboard/user/contest/challenge/submitcode"
