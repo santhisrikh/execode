@@ -2,8 +2,11 @@ from app.main.models.TestCasesModel import TestCasesModel
 from app.main import db
 
 def save_changes(data):
-    db.session.add(data)
-    db.session.commit()
+    try:
+        db.session.add(data)
+        db.session.commit()
+    except:
+        db.session.rollback()
 
 
 def add_multiple_test_cases(challenge_id, test_cases):
@@ -25,5 +28,8 @@ def update_input_output(input_path, output_path, test_case_id):
     # update_input_output.output_file = output_path    
     # save_changes(update_test_case)
     db.engine.execute("update test_cases set input_file='{input_path}', output_file='{output_path}' where id={test_case_id}")
-    db.session.commit()
+    try:
+        db.session.commit()
+    except:
+        db.session.rollback()
     return True

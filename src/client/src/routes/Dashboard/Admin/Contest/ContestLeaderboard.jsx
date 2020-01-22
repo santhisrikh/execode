@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import axiosInstance from "../../../../utils/axiosInterceptor";
 
-// import Axios from "../../../../utils/axiosInterceptor"
 class ContestLeaderBoard extends React.Component {
   constructor() {
     super();
@@ -16,6 +16,22 @@ class ContestLeaderBoard extends React.Component {
         }
       ]
     };
+  }
+
+  getLeaderBoardData = () => {
+    // get the leader board data and set state
+    // set auth header
+    const { contestId } = this.props;
+    axiosInstance.get(`contest/${contestId}/leaderboard`).then(res => {
+      if (res.data && res.data.leaderboard) {
+        this.setState({ leaderboard: res.data.leaderboard });
+      }
+    });
+  };
+
+  componentDidMount() {
+    //
+    this.getLeaderBoardData();
   }
 
   render() {
@@ -40,14 +56,14 @@ class ContestLeaderBoard extends React.Component {
             <tbody>
               {leaderboard.map(ele => {
                 return (
-                  <tr>
+                  <tr key={"leaderboard" + ele.id}>
                     {/* <th scope="row">{ele.id}</th> */}
                     <td>{ele.name}</td>
                     <td>{ele.score}</td>
                     <td>{ele.rank}</td>
                     <td>
                       <Link
-                        to={`/dashboard/admin/${this.props.contestId}/user-submission/${ele.userId}`}
+                        to={`/dashboard/admin/${this.props.contestId}/user-submission/${ele.id}`}
                       >
                         View
                       </Link>

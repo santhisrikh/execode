@@ -3,8 +3,11 @@ from app.main.models.ChallengeSettingsModel import ChallengeSettings
 from app.main import db
 
 def save_changes(data):
-    db.session.add(data)
-    db.session.commit()
+    try:
+        db.session.add(data)
+        db.session.commit()
+    except:
+        db.session.rollback()
 
 def add_multiple_settings(challenge_id, settings):
     for setting in settings:
