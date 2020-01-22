@@ -6,12 +6,14 @@ import axios from "../../../../utils/axiosInterceptor";
 // eslint-disable-next-line react/prop-types
 const ContestDetails = ({ contestId }) => {
   const [challenges, setChallenges] = useState([]);
+  const [aboutchallenges, setAboutchallenges] = useState([]);
 
   useEffect(() => {
     async function getChallenges() {
       try {
         const response = await axios.get(`/contest/${contestId}`);
         setChallenges(response.data.data);
+        setAboutchallenges(response.data.contest_data);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error);
@@ -22,6 +24,23 @@ const ContestDetails = ({ contestId }) => {
   return (
     <div>
       <div className="container">
+        <h3>challenge name: {aboutchallenges.contest_name}</h3>
+        <p>{aboutchallenges.details}</p>
+        <p>
+          <ul>
+            <li>start time: {aboutchallenges.start_time}</li>
+
+            <li>end time: {aboutchallenges.end_time}</li>
+          </ul>
+          <ul>
+            <li>
+              start date: <b>{aboutchallenges.start_date}</b>
+            </li>
+            <li>
+              end date: <b>{aboutchallenges.end_date}</b>
+            </li>
+          </ul>
+        </p>
         {challenges &&
           challenges.map(challenge => (
             <div key={challenge.challenge_id} className="row border mb-3 mt-5">
@@ -46,7 +65,7 @@ const ContestDetails = ({ contestId }) => {
                     </button>
                     <Link
                       className="btn btn-outline-primary btn-block btn-lg"
-                      to="/dashboard/user/1/2"
+                      to={`/dashboard/user/${aboutchallenges.contest_name}/${challenge.challenge_id}`}
                     >
                       Contests
                     </Link>
